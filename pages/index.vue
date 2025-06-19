@@ -4,7 +4,7 @@
     <section class="heroSection relative  overflow-hidden  bgBlur">
      <img :src="grid" alt="Logo" class="grid"  />    
  <div class="back_white_blob_top"></div>
-      <span class="back_white_blob_down"></span>
+      <div class="back_white_blob_down"></div>
    </section>
   </NuxtLayout>
 </template>
@@ -46,6 +46,14 @@ import grid from  '~/assets/images/background/grid.svg'
     z-index: -3;
     box-shadow: 0px 0 14rem 10rem rgba(149, 147, 147, 0.31);
     border-radius: 8% 52% 0% 100%/0% 0% 91% 100%;
+}
+.back_white_blob_down {
+   width: 10vw;
+  position: absolute;
+  z-index: -3;
+  bottom: 22%;
+  left: -6%;
+  box-shadow: 0px 0 10rem 3rem rgba(177, 237, 247, 0.49);
 }
 
 

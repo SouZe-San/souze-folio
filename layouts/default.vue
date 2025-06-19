@@ -1,6 +1,7 @@
 <template>
   <section>
     <NavTopNav/>
+    <NavSideNav/>
     <main>
       <slot />
     </main>
@@ -8,7 +9,7 @@
 </template>
 
 <script lang="ts" setup>
-import { NavTopNav } from '#components';
+import { NavTopNav, NavSideNav } from '#components';
 
 
 </script>
