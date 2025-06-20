@@ -2,8 +2,12 @@
   <header class="flex items-center justify-between p-4 ">
       <div class="logo">
        
-          <span class="font-changa text-xl">
-         Souze-San.dev
+          <span class="font-changa text-xl flex gap-2 items-center">
+            <div class="w-10 rounded-full overflow-hidden">
+              <img :src="profile" alt="profile" />
+            </div>
+         <!-- Souze-San.dev -->
+          <img alt="Souze" :src="nameLogo" class="w-40" />
           </span>
         
       </div>
@@ -23,6 +27,7 @@
 
 <script lang="ts" setup>
 import nameLogo from '~/assets/icons/logo/name.svg';
+import profile from '~/public/assets/profile.jpeg'
 </script>
 
 <style scoped>
