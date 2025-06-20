@@ -1,0 +1,15 @@
+<template>
+<svg viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 4L12.009 9.727C11.7039 9.90421 11.3573 9.99755 11.0045 9.99755C10.6517 9.99755 10.3051 9.90421 10 9.727L1 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19 1H3C1.89543 1 1 1.89543 1 3V15C1 16.1046 1.89543 17 3 17H19C20.1046 17 21 16.1046 21 15V3C21 1.89543 20.1046 1 19 1Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+</template>
+
+<script lang="ts" setup>
+
+</script>
+
+<style>
+
+</style>
