@@ -1,23 +1,32 @@
 <template>
-  <div class="side-nav-container">
-     <div
-      ref="dockDesktop"
-      class="flex flex-col gap-4 hover:gap-6 transition-all ease-in-out items-end rounded-2xl px-4 pb-3"
+  <div class="nav-container side-nav-container">
+     <nav
+      class="flex flex-col gap-4 hover:gap-6 transition-all ease-in-out items-end rounded-2xl"
       @mousemove="handleMouseMove"
       @mouseleave="handleMouseLeave"
     >
-      <DockIcon
+      <NavSideDockIcon
         v-for="(item, index) in navLink"
         :key="index.toString()"
         :item="item"
         :mouse-x="mouseX"
       />
-    </div>
+    </nav>
   </div>
 </template>
 
 <script lang="ts" setup>
-import DockIcon from "./DockIcon.vue";
+
+import { NavSideDockIcon } from '#components';
+
+
+
+import { ref } from 'vue';
+import Cv from '~/components/icons/nav/cv.vue';
+import Exp from '~/components/icons/nav/exp.vue';
+import Home from '~/components/icons/nav/home.vue';
+import Project from '~/components/icons/nav/project.vue';
+import Skills from '~/components/icons/nav/skills.vue';
 
 // / Desktop mouse tracking
 const mouseX = ref(Infinity)
@@ -33,50 +42,41 @@ const handleMouseLeave = () => {
 
 const navLink = [
   {
-    icon: "H",
+    icon: Home,
     label: "Home",
     href: "/",
+    hoverClass:"hover:text-[white]"
   },
   {
-    icon: "P",
+    icon: Project,
     label: "Projects",
     href: "/projects",
+    hoverClass:"hover:text-[#ffea05]"
   },
   {
-    icon: "E",
+    icon: Exp,
     label: "Experience",
-    href: "/exp",
+    href: "/",
+    hoverClass:"hover:text-[#9f05ff]"
   },
   {
-    icon: "S",
+    icon: Skills,
     label: "Skills",
-    href: "/sex",
+    href: "/",
+    hoverClass:"hover:text-[#04ff96]"
   },
   {
-    icon: "Cv",
+    icon: Cv,
     label: "CV",
-    href: "/c",
+    href: "/",
+    hoverClass:"hover:text-[#ff6d05]"
   },
 ];
 </script>
 
-<style>
+<style scoped>
 .side-nav-container {
-  width: 5rem;
-  position: fixed;
-  top: 50%;
-  left: 10px;
-  z-index: 200;
-  transform: translateY(-50%);
-  padding: 1rem 0rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  backdrop-filter: blur(4px);
-  background-blend-mode: overlay;
   background-color: rgba(68, 68, 68, 0.08);
-  border-radius: 1rem;
-  border: 1px solid #ffffff12;
   box-shadow: 2px 4px 6px 1px rgba(0, 0, 0, 0.4117647059);
 }
 

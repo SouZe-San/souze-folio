@@ -1,11 +1,11 @@
 <template>
   <NuxtLink
     :to="item.href"
-    class="hover:space-y-1 hover:translate-x-2.5 transition-all duration-300 ease-in-out "
+    :class="['hover:space-y-2 hover:translate-x-2.5 transition-all duration-300 ease-in-out text-[#C0C0C0]',item.hoverClass]"
   >
     <div
       ref="iconContainer"
-      class="aspect-square rounded-2xl bg-neutral-800 flex items-center justify-center relative cursor-pointer transition-transform duration-300 ease-out "
+      class="aspect-square rounded-xl bg-neutral-800 flex items-center justify-center relative cursor-pointer transition-transform duration-300 ease-out "
       :style="containerStyle"
       @mouseenter="handleMouseEnter"
       @mouseleave="handleMouseLeave"
@@ -14,7 +14,7 @@
       <div
         v-if="hovered"
         ref="tooltip"
-        class="px-2 py-0.5 whitespace-pre rounded-md border bg-neutral-800 border-neutral-900 text-white absolute left-8 translate-x-4  w-fit text-xs label"
+        class="px-2 py-0.5 whitespace-pre rounded-md border bg-neutral-800 border-white/10 text-white absolute left-8 translate-x-4  w-fit text-xs label"
       >
         {{ item.label }}
       </div>
@@ -22,26 +22,26 @@
       <!-- Icon -->
       <div
         ref="iconWrapper"
-        class="flex items-center justify-center transition-transform duration-300 ease-out"
+        class="flex items-center justify-center transition-transform duration-300 ease-out aspect-square"
         :style="iconStyle"
       >
     
-        {{ item.icon }}
+        <component :is="item.icon" class="w-10 aspect-square transition-colors ease-in-out" />
       </div>
     </div>
   </NuxtLink>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch, computed } from 'vue'
+import { ref, onMounted, watch, computed, type DefineComponent } from 'vue'
 
 
 interface Props {
   item: {
     label: string,
-    icon: string,
+    icon: DefineComponent<{}, {}, any>,
     href: string,
-   
+   hoverClass?: string;
   }
   mouseX: number
 }
@@ -56,18 +56,19 @@ const hovered = ref(false)
 const containerScale = ref(1)
 const translateValue = ref(0)
 const iconScale = ref(1)
+const paddingValue = ref(0)
 
 // Computed styles for smooth scaling
 const containerStyle = computed(() => ({
   transform: `scale(${containerScale.value}) translateX(${translateValue.value }px)`,
-  width: '40px',
-  height: '40px'
+  width: '45px',
+  
 }))
 
 const iconStyle = computed(() => ({
   transform: `scale(${iconScale.value})`,
-  width: '20px',
-  height: '20px'
+  width: '25px',
+  padding: `${paddingValue.value}px`,
 }))
 
 const calculateDistance = () => {
@@ -89,8 +90,9 @@ const updateScale = () => {
     const normalizedDistance = absDistance / 80
     const newScale = 2 - normalizedDistance // 2 at center, 1 at edges
     containerScale.value = newScale
-    iconScale.value = newScale
-    translateValue.value = newScale * 8 // Adjust translation based on distance
+    iconScale.value = newScale -.4 ;
+    translateValue.value = newScale * 8
+    paddingValue.value = ((newScale - 1) / (2 - 1)) * (4 - 0) + 0 // Adjust translation based on distance
   } else {
     translateValue.value = 0 // Adjust translation based on distance
     containerScale.value = 1
@@ -113,6 +115,7 @@ const handleMouseEnter = () => {
         opacity: 1,
         x: 30,
         duration: 0.2,
+        
         ease: "power2.out"
       }
     )

@@ -2,18 +2,18 @@
   <header class="flex items-center justify-between p-4 ">
       <div class="logo">
        
-          <span>
+          <span class="font-changa text-xl">
          Souze-San.dev
           </span>
         
       </div>
 
- <div class="flex items-center justify-center gap-2 mt-10">
+ <div class="flex items-center justify-center gap-2">
           <span class="relative flex size-3 mr-4 sm:mr-0">
             <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-300 opacity-75"></span>
             <span class="relative inline-flex size-3 rounded-full bg-green-500"></span>
           </span>
-          <span class="text-heading-text-color text-[0.6rem] md:text-[0.8rem] leading-3 hidden sm:block">
+          <span class="text-xl leading-3 hidden sm:block font-changa">
             Open to work
           </span>
         </div> 
@@ -22,10 +22,10 @@
 </template>
 
 <script lang="ts" setup>
-
+import nameLogo from '~/assets/icons/logo/name.svg';
 </script>
 
-<style>
+<style scoped>
 header {
   width: 80vw;
   height: 48px;
