@@ -1,9 +1,11 @@
 <template>
-  <header class="flex items-center justify-between p-4 ">
-    <div class="logo">
-
+  <header class="flex items-center sm:justify-between justify-start gap-3 p-4 ">
+    <div class="logo flex items-center gap-2">
+  <div class="w-10 rounded-full overflow-hidden sm:hidden">
+              <img :src="profile" alt="profile" />
+            </div>
       <span class="font-changa text-xl">
-        <img alt="Souze" :src="logo" />
+        <img alt="Souze" :src="logo" class="max-sm:w-36">
       </span>
 
     </div>
@@ -23,7 +25,7 @@
 
 <script lang="ts" setup>
 import logo from '~/assets/icons/logo/name.svg'
-
+import profile from '~/public/assets/profile.jpeg'
 
 </script>
 
@@ -32,13 +34,9 @@ header {
   padding: 1.5rem 3rem;
 }
 
-/* .badge {
-  padding: 9px 21px;
-  border: 1px solid #ffffff54;
-  border-radius: 15px;
-   backdrop-filter: blur(2px);
-  background-color: rgba(174, 174, 174, 0.02);
-   box-shadow: 2px 4px 6px 1px rgba(0, 0, 0, 0.234);
-  background-blend-mode: overlay;
-} */
+@media (width <= 640px) {
+  header{
+    padding: 1.5rem 1rem;
+  }
+}
 </style>

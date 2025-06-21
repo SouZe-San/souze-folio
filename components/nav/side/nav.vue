@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-container side-nav-container">
+  <div class="nav-container side-nav-container sm:flex hidden">
      <nav
       class="flex flex-col gap-4 hover:gap-6 transition-all ease-in-out items-end rounded-2xl"
       @mousemove="handleMouseMove"

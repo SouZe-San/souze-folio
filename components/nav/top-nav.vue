@@ -7,7 +7,7 @@
               <img :src="profile" alt="profile" />
             </div>
          <!-- Souze-San.dev -->
-          <img alt="Souze" :src="nameLogo" class="w-40" />
+          <img alt="Souze" :src="nameLogo" class="sm:w-40 w-36" />
           </span>
         
       </div>
@@ -50,5 +50,11 @@ header {
   border: 1px solid #ffffff1c;
 
   box-shadow: 2px 4px 6px 1px rgba(0, 0, 0, 0.4117647059);
+}
+
+@media (width <= 640px) {
+  header {
+  width: 90vw;
+  height: 50px;}
 }
 </style>

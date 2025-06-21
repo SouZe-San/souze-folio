@@ -3,7 +3,7 @@
     <NavPageHeader/>
      <div class="back_white_blob_top"></div>
       <div class="back_white_blob_down"></div>
-
+  <NavSideMobileNav/>
     <NavSideNav/>
     <slot />
   </main>
@@ -36,5 +36,10 @@ main{
   bottom: 22%;
   left: -6%;
   box-shadow: 0px 0 10rem 3rem rgba(177, 237, 247, 0.49);
+}
+@media (width <= 640px) {
+  main {
+    min-height: 100svh;
+  }
 }
 </style>

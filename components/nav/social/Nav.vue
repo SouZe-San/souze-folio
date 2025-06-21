@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-container social-nav-container">
+  <div class="nav-container social-nav-container flex">
  
       <nav class="flex flex-col items-center justify-center gap-4 ">
         <nav-item
@@ -67,5 +67,12 @@ const socialNav = [
   border: 1px solid #dbdbdb0a;
   box-shadow: 2px 4px 6px 1px rgba(0, 0, 0, 0.4117647059);
   background-blend-mode: unset;
+}
+
+@media (width <= 640px) {
+  .social-nav-container {
+    bottom: 5%;
+    z-index: 1;
+  }
 }
 </style>

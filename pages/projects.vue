@@ -1,8 +1,8 @@
 <template>
   <NuxtLayout>
   <section class="w-full h-full">
-    <h1 class="w-full text-center font-cinzel-bold text-6xl relative">
-      <span class="absolute -top-7 opacity-60 text-white/20 left-[50%] -translate-x-[50%]" style="letter-spacing: 10px;">
+    <h1 class="w-full text-center font-cinzel-bold sm:text-6xl text-[40px] max-sm:mt-4 relative">
+      <span class="absolute sm:-top-7 -top-5 opacity-60 text-white/20 left-[50%] -translate-x-[50%]" style="letter-spacing: 10px;">
 Works
       </span>
 My Works

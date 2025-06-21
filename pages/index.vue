@@ -6,7 +6,7 @@
  <div class="back_white_blob_top"></div>
       <div class="back_white_blob_down"></div>
 
-      <div class="flex flex-col items-center justify-center h-full gap-4">
+      <div class="flex flex-col items-center justify-center max-sm:justify-start max-sm:pt-16  h-full gap-4">
       
         <div class="name-main wi-full text-center relative">
 
@@ -19,10 +19,8 @@
         </div>
 
       
-          <h3 class="text-end">
-            
-
-full-stack developer from India, love to explore, build things and solving problems.
+          <h3 class="text-end ">
+            full-stack developer from India, love to explore, build wired things and solving problems.
           </h3>
        
         </div>
@@ -97,5 +95,27 @@ import grid from  '~/assets/images/background/grid.svg'
 h3{
   width: 75%;
   font-size: 18px;
+}
+
+@media (width <= 640px ) {
+  .heroSection{
+    
+    height: 100svh;
+  }
+  .name-main{
+  h1{
+    line-height: 1;
+    font-size: 40px;
+    span{
+      font-size: 8rem;
+    }
+  &:last-child{
+    translate: 25% 0;
+  }
+  }
+}
+h3{
+  font-size: 15px;
+}
 }
 </style>
