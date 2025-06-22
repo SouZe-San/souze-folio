@@ -1,4 +1,5 @@
 <template>
+  <Cursor />
   <main class="relative">
     <NavPageHeader/>
      <div class="back_white_blob_top"></div>

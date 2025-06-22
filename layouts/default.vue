@@ -4,6 +4,7 @@
     <NavSideNav/>
     <NavSocialNav/>
     <NavSideMobileNav/>
+<Cursor />
     <main>
       <slot />
     </main>
