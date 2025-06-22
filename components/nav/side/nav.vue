@@ -1,5 +1,6 @@
 <template>
-  <div class="nav-container side-nav-container sm:flex hidden">
+  <div class="nav-container side-nav-container sm:flex hidden" @mousemove="scaleGrow"
+          @mouseleave="scaleNormal">
      <nav
       class="flex flex-col gap-4 hover:gap-6 transition-all ease-in-out items-end rounded-2xl"
       @mousemove="handleMouseMove"
@@ -18,15 +19,23 @@
 <script lang="ts" setup>
 
 import { NavSideDockIcon } from '#components';
-
-
-
 import { ref } from 'vue';
 import Cv from '~/components/icons/nav/cv.vue';
 import Exp from '~/components/icons/nav/exp.vue';
 import Home from '~/components/icons/nav/home.vue';
 import Project from '~/components/icons/nav/project.vue';
 import Skills from '~/components/icons/nav/skills.vue';
+
+  const { setHover } = useHover();
+
+
+function scaleGrow(){
+  setHover(true,'none')
+}
+
+function scaleNormal(){
+setHover(false)
+}
 
 // / Desktop mouse tracking
 const mouseX = ref(Infinity)
@@ -37,6 +46,7 @@ const handleMouseMove = (e: MouseEvent) => {
 }
 
 const handleMouseLeave = () => {
+  console.log("called From Nav")
   mouseX.value = Infinity
 }
 

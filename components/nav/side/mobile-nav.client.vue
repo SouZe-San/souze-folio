@@ -65,7 +65,7 @@ let tl: gsap.core.Timeline;
 onMounted(()=>{
   gsap.registerPlugin()
   targets = gsap.utils.toArray(".nav_button");
-  console.log("DOMO !!! \n")
+  
   if(targets){
     gsap.set(targets, {
         scale: 0,

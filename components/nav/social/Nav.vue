@@ -1,5 +1,6 @@
 <template>
-  <div class="nav-container social-nav-container flex">
+  <div class="nav-container social-nav-container flex" @mousemove="scaleGrow"
+          @mouseleave="scaleNormal">
  
       <nav class="flex flex-col items-center justify-center gap-4 ">
         <nav-item
@@ -48,6 +49,17 @@ const socialNav = [
     hoverClass: "hover:invert hover:bg-[#1F1F1F] hover:scale-110 transition-all ease-in-out duration-300",
   },
   ]
+
+  const { setHover } = useHover();
+
+
+function scaleGrow(){
+  setHover(true,'none')
+}
+
+function scaleNormal(){
+setHover(false)
+}
   
 </script>
 

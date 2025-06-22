@@ -12,7 +12,7 @@
         
       </div>
 
- <div class="flex items-center justify-center gap-2">
+ <div class="flex items-center justify-center gap-2" @mouseenter="scaleUp" @mousemove="scaleUp" @mouseleave="()=>setHover(false)">
           <span class="relative flex size-3 mr-4 sm:mr-0">
             <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-300 opacity-75"></span>
             <span class="relative inline-flex size-3 rounded-full bg-green-500"></span>
@@ -28,6 +28,12 @@
 <script lang="ts" setup>
 import nameLogo from '~/assets/icons/logo/name.svg';
 import profile from '~/public/assets/profile.jpeg'
+const {setHover} = useHover()
+
+function scaleUp(){
+setHover(true,"small")
+}
+
 </script>
 
 <style scoped>
