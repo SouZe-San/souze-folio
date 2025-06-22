@@ -1,19 +1,23 @@
 <template>
-  <header className="flex items-center justify-between p-4 ">
-      <div className="logo">
+  <header class="flex items-center justify-between p-4 ">
+      <div class="logo">
        
-          <span>
-         Souze-San.dev
+          <span class="font-changa text-xl flex gap-2 items-center">
+            <div class="w-10 rounded-full overflow-hidden">
+              <img :src="profile" alt="profile" />
+            </div>
+         <!-- Souze-San.dev -->
+          <img alt="Souze" :src="nameLogo" class="sm:w-40 w-36" />
           </span>
         
       </div>
 
- <div className="flex items-center justify-center gap-2 mt-10">
-          <span className="relative flex size-3 mr-4 sm:mr-0">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-300 opacity-75"></span>
-            <span className="relative inline-flex size-3 rounded-full bg-green-500"></span>
+ <div class="flex items-center justify-center gap-2" @mouseenter="scaleUp" @mousemove="scaleUp" @mouseleave="()=>setHover(false)">
+          <span class="relative flex size-3 mr-4 sm:mr-0">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-300 opacity-75"></span>
+            <span class="relative inline-flex size-3 rounded-full bg-green-500"></span>
           </span>
-          <span className="text-heading-text-color text-[0.6rem] md:text-[0.8rem] leading-3 hidden sm:block">
+          <span class="text-xl leading-3 hidden sm:block font-changa">
             Open to work
           </span>
         </div> 
@@ -22,10 +26,17 @@
 </template>
 
 <script lang="ts" setup>
+import nameLogo from '~/assets/icons/logo/name.svg';
+import profile from '~/public/assets/profile.jpeg'
+const {setHover} = useHover()
+
+function scaleUp(){
+setHover(true,"small")
+}
 
 </script>
 
-<style>
+<style scoped>
 header {
   width: 80vw;
   height: 48px;
@@ -45,5 +56,11 @@ header {
   border: 1px solid #ffffff1c;
 
   box-shadow: 2px 4px 6px 1px rgba(0, 0, 0, 0.4117647059);
+}
+
+@media (width <= 640px) {
+  header {
+  width: 90vw;
+  height: 50px;}
 }
 </style>
