@@ -6,15 +6,15 @@
       <div class="back_white_blob_down"></div>
 
       <div
-        class="flex flex-col items-center justify-center max-sm:justify-start max-sm:pt-16 h-full gap-4"
+        class="flex flex-col items-center justify-center max-sm:justify-start max-sm:pt-16 h-full"
       >
         <div
-          class="name-main wi-full text-center relative"
+          class="name-main text-center relative"
           @mousemove="scaleGrow"
           @mouseleave="scaleNormal"
          
         >
-          <span class="absolute -top-[10%] -left-4"> Hii, I&#39;am </span>
+          <span class="absolute -top-[5%] -left-4"> Hii, I&#39;m </span>
           <h1 class="text-[48px] md:text-8xl font-bold font-cinzel-bold text-white -translate-4">
             <span>S</span>oumayjit
           </h1>
@@ -22,11 +22,13 @@
           <h1 class="text-[48px] md:text-8xl font-bold font-cinzel-bold text-white">Mondal</h1>
         </div>
 
-        <h3 class="text-end">
-          full-stack developer from India, love to explore, build wired things and solving problems.
+        <h3 class="text-end text-white/70">
+          Full-stack <span class="font-changa capitalize text-white">developer</span>, love to explore, build <span class="font-changa text-white"> wired </span>things and solving problems.
         </h3>
       </div>
     </section>
+   <HomeAbout/>
+   <!-- <section class="h-screen"></section> -->
   </NuxtLayout>
 </template>
 
@@ -111,7 +113,7 @@ setHover(false)
 }
 
 h3 {
-  width: 75%;
+  width: 65%;
   font-size: 18px;
 }
 
