@@ -1,5 +1,7 @@
 <template>
+  <ClientOnly>
   <div class="cursor" ref="cursor"></div>
+  </ClientOnly>
 </template>
 
 <script lang="ts" setup>
@@ -33,11 +35,7 @@ const moveCircle = (x: number, y: number,size:number) => {
     y,
     xPercent: -50,
     yPercent: -50,
-  
-    // ease: "power3.out",
     ease: "back.out",
-    // duration:.3,
-    
   });
 
   gsap.set(cursor.value,{
@@ -89,8 +87,7 @@ onMounted(() => {
 
 <style scoped>
 .cursor {
-  position: absolute;
-  /* width: 2rem; */
+  position: fixed;
   width: 32px;
   aspect-ratio: 1;
   background: white;
