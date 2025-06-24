@@ -2,7 +2,7 @@
   <section
     class="h-screen relative"
     id="skills"
-    @mousemove="originMouseEnter"
+    @mouseenter="originMouseEnter"
     @mouseleave="originMouseLeave"
   >
     <!-- mask Content -->
@@ -91,7 +91,6 @@ const moveCircle = (x: number, y: number, size: number) => {
   });
   gsap.set(maskBody.value, {
     maskSize: size,
-    duration:'.5s',
     ease:"power3.inOut"
   });
 
@@ -126,5 +125,8 @@ watchEffect((onCleanup) => {
   background-color: white;
   color: black;
   z-index: 1;
+  
+  /** By Using this transition become smooth But some unWanted Happens*/
+  /* transition: mask-size .5s;  */
 }
 </style>
