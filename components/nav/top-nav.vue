@@ -1,5 +1,5 @@
 <template>
-  <header class="flex items-center justify-between p-4 ">
+  <header class="flex items-center justify-between p-4 " ref="headerRef">
       <div class="logo">
        
           <span class="font-changa text-xl flex gap-2 items-center">
@@ -29,10 +29,31 @@
 import nameLogo from '~/assets/icons/logo/name.svg';
 import profile from '~/public/assets/profile.jpeg'
 const {setHover} = useHover()
+const headerRef = ref<HTMLElement>()
 
 function scaleUp(){
 setHover(true,"small")
 }
+
+const widthChange = ()=>{
+  if(!headerRef.value) return
+   if(  window.scrollY > 670){
+   headerRef.value.style.width = '40vw'
+  }
+  else{
+     headerRef.value.style.width = '80vw'
+  }
+}
+watchEffect((onCleanup)=>{
+ if(window){
+ window.addEventListener('scroll',widthChange)
+   onCleanup(() => {
+     window.removeEventListener("scroll", widthChange);
+    
+   });
+ }
+
+})
 
 </script>
 
@@ -54,8 +75,8 @@ header {
   background-color: rgba(85, 85, 85, 0.246);
   border-radius: 1rem;
   border: 1px solid #ffffff1c;
-
   box-shadow: 2px 4px 6px 1px rgba(0, 0, 0, 0.4117647059);
+  transition: width .4s ease-in-out;
 }
 
 @media (width <= 640px) {
