@@ -42,11 +42,11 @@ const mouseX = ref(Infinity)
 
 
 const handleMouseMove = (e: MouseEvent) => {
-  mouseX.value = e.pageY
+  mouseX.value =  Math.abs(e.pageY - window.scrollY)
+  // mouseX.value = e.pageY
 }
 
 const handleMouseLeave = () => {
-  console.log("called From Nav")
   mouseX.value = Infinity
 }
 
@@ -72,7 +72,7 @@ const navLink = [
   {
     icon: Skills,
     label: "Skills",
-    href: "/",
+    href: "/#skills",
     hoverClass:"hover:text-[#04ff96]"
   },
   {

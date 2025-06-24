@@ -63,7 +63,8 @@ let targets: unknown[] ;
 let tl: gsap.core.Timeline;
 
 onMounted(()=>{
-  gsap.registerPlugin()
+ 
+  if(!mainButtonRef.value) return
   targets = gsap.utils.toArray(".nav_button");
   
   if(targets){
@@ -76,7 +77,6 @@ onMounted(()=>{
 
   tl = gsap.timeline({paused:true});
   
-     
   // Rotate main button
   tl.to(mainButtonRef.value, {
     rotation: 45,

@@ -16,6 +16,8 @@ const rafId = ref<number | null>(null);
 const {isHover, scaleType} = useHover()
 const size = ref(32)
 
+const {setPosition} = useCursorPosition()
+
 const lerp = (x: number, y: number, a: number) => x * (1 - a) + y * a;
 
 const varSize = {
@@ -29,7 +31,7 @@ const updateMousePosition = (e: MouseEvent) => {
 };
 
 const moveCircle = (x: number, y: number,size:number) => {
-  
+  if(!cursor.value) return
   gsap.set(cursor.value, {
     x,
     y,
@@ -61,7 +63,7 @@ const animate = () => {
   // };
 
  
-
+  setPosition(delayedMouse.value.x, delayedMouse.value.y)
   moveCircle(delayedMouse.value.x, delayedMouse.value.y, size.value);
 
   rafId.value = window.requestAnimationFrame(animate);
