@@ -28,7 +28,7 @@
       </div>
     </section>
    <HomeAbout/>
-   <!-- <section class="h-screen"></section> -->
+ <HomeSkills/>
   </NuxtLayout>
 </template>
 
