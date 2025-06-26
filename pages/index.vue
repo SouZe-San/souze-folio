@@ -29,6 +29,7 @@
     </section>
    <HomeAbout/>
  <HomeSkills/>
+ <HomeContact/>
   </NuxtLayout>
 </template>
 
