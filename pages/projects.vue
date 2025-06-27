@@ -1,5 +1,4 @@
 <template>
-  <NuxtLayout>
   <section class="w-full h-full flex flex-col items-center">
     <div class="w-full text-center mb-20">
 
@@ -22,7 +21,6 @@
       <ProjectsItemRow/>
     </div>
   </section>
-  </NuxtLayout>
 </template>
 
 <script lang="ts" setup>

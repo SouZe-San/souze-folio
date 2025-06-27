@@ -1,6 +1,6 @@
 <template>
-  <Cursor />
   <main class="relative">
+    <Cursor />
     <NavPageHeader/>
      <div class="back_white_blob_top"></div>
       <div class="back_white_blob_down"></div>
@@ -12,7 +12,7 @@
 
 <script lang="ts" setup>
 import { NavSideNav, NavPageHeader } from '#components';
-
+const revel = ref();
 </script>
 
 <style scoped>

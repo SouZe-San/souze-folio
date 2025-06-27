@@ -152,6 +152,7 @@ watchEffect((onCleanup) => {
 });
 
 onMounted(() => {
+  if(!document.getElementsByClassName('aboutSection')) return
   const triggerTl = gsap.timeline({
     scrollTrigger: {
       trigger: ".aboutSection",

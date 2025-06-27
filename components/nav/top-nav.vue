@@ -6,7 +6,7 @@
             <div class="w-10 rounded-full overflow-hidden">
               <img :src="profile" alt="profile" />
             </div>
-         <!-- Souze-San.dev -->
+        
           <img alt="Souze" :src="nameLogo" class="sm:w-40 w-36" />
           </span>
         
@@ -17,7 +17,7 @@
             <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-300 opacity-75"></span>
             <span class="relative inline-flex size-3 rounded-full bg-green-500"></span>
           </span>
-          <span class="text-xl leading-3 hidden sm:block font-changa">
+          <span class="text-xl leading-3 sm:block hidden font-changa">
             Open to work
           </span>
         </div> 

@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-container side-nav-container sm:flex hidden" @mousemove="scaleGrow"
+  <div class="nav-container side-nav-container hidden sm:flex" @mousemove="scaleGrow"
           @mouseleave="scaleNormal">
      <nav
       class="flex flex-col gap-4 hover:gap-6 transition-all ease-in-out items-end rounded-2xl"
@@ -66,7 +66,7 @@ const navLink = [
   {
     icon: Exp,
     label: "Experience",
-    href: "/",
+    href: "/exp",
     hoverClass:"hover:text-[#9f05ff]"
   },
   {

@@ -1,5 +1,6 @@
 <template>
-  <NuxtLayout>
+  <main>
+    <!-- <div class="reveler"></div> -->
     <section class="heroSection relative overflow-hidden bgBlur">
       <img :src="grid" alt="Logo" class="grid" />
       <div class="back_white_blob_top"></div>
@@ -12,7 +13,6 @@
           class="name-main text-center relative"
           @mousemove="scaleGrow"
           @mouseleave="scaleNormal"
-         
         >
           <span class="absolute -top-[5%] -left-4"> Hii, I&#39;m </span>
           <h1 class="text-[48px] md:text-8xl font-bold font-cinzel-bold text-white -translate-4">
@@ -23,31 +23,44 @@
         </div>
 
         <h3 class="text-end text-white/70">
-          Full-stack <span class="font-changa capitalize text-white">developer</span>, love to explore, build <span class="font-changa text-white"> wired </span>things and solving problems.
+          Full-stack <span class="font-changa capitalize text-white">developer</span>, love to
+          explore, build <span class="font-changa text-white"> wired </span>things and solving
+          problems.
         </h3>
       </div>
     </section>
-   <HomeAbout/>
- <HomeSkills/>
- <HomeContact/>
-  </NuxtLayout>
+    <HomeAbout />
+    <HomeSkills />
+    <HomeContact />
+  </main>
 </template>
 
 <script setup>
 import grid from "~/assets/images/background/grid.svg";
 const { setHover } = useHover();
-
-
-function scaleGrow(){
-  setHover(true)
+function scaleGrow() {
+  setHover(true);
 }
 
-function scaleNormal(){
-setHover(false)
+function scaleNormal() {
+  setHover(false);
 }
-
 </script>
 <style scoped>
+main {
+  background: url("/_nuxt/assets/images/background/noisy-2.png") center center fixed,
+    linear-gradient(327.21deg, #141414 3.65%, rgba(26, 26, 26, 0) 40.32%),
+    linear-gradient(245.93deg, rgba(36, 35, 36, 0.27) 0%, rgba(235, 235, 235, 0) 36.63%),
+    linear-gradient(147.6deg, rgba(0, 0, 0, 0) 29.79%, rgba(0, 0, 0, 0.03) 85.72%), #141414;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+@media (width <= 640px) {
+  main {
+    min-height: 100svh;
+  }
+}
 .grid {
   position: fixed;
   top: 0;
