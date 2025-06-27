@@ -1,4 +1,9 @@
 <template>
+  <main>
+    <NavPageHeader/>
+    <div class="back_white_blob_top"></div>
+      <div class="back_white_blob_down"></div>
+ 
   <section class="w-full h-full flex flex-col items-center">
     <div class="w-full text-center mb-20">
 
@@ -14,19 +19,17 @@
       
     <!-- <ProjectsItem/> -->
 
-    <div class="relative w-full mt-24">
+    <div class="relative w-full mt-24 mb-30">
       <ProjectsItemRow/>
       <ProjectsItemRow/>
       <ProjectsItemRow/>
       <ProjectsItemRow/>
     </div>
   </section>
+   </main>
 </template>
 
 <script lang="ts" setup>
-definePageMeta({
-  layout: 'page-layout',
-})
 
 const { setHover } = useHover();
 

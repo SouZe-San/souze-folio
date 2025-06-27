@@ -1,6 +1,6 @@
 <template>
   <section>
-    <NavTopNav />
+   
     <NavSideNav />
     <NavSocialNav />
     <NavSideMobileNav />
@@ -31,7 +31,7 @@ router.beforeEach((to, from) => {
       $gsap.to(revealer.value, {
         scaleY: 1,
         duration: 0.4,
-        ease: "power2.inOut",
+        ease: "hop",
         onComplete: () => {
           resolve()
         }
