@@ -5,7 +5,7 @@
     <NavSocialNav />
     <NavSideMobileNav />
     <Cursor />
-  <div ref="revealer" class="revealer"></div>
+  <div ref="curtain" class="revealer"></div>
 
     <slot />
   </section>

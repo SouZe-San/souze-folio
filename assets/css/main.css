@@ -45,7 +45,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.revealer {
+.curtain {
   position: fixed;
   top: 0;
   left: 0;
@@ -53,7 +53,7 @@ body {
   width: 100vw;
   height: 100svh;
   transform-origin: center top;
-  background-color: rgb(221, 221, 221);
+  background-color: #151414;
   pointer-events: none;
 }
 .nav-container {
