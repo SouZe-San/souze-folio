@@ -1,11 +1,11 @@
 <template>
   <section>
-   
+    <Loader/>
     <NavSideNav />
     <NavSocialNav />
     <NavSideMobileNav />
     <Cursor />
-  <div ref="curtain" class="revealer"></div>
+  <div ref="curtain" class="curtain"></div>
 
     <slot />
   </section>
@@ -13,11 +13,11 @@
 
 <script lang="ts" setup>
 
-const revealer = ref(null)
+const curtain = ref(null)
 const { $gsap, $CustomEase } = useNuxtApp();
 onMounted(() => {
-  // Initialize revealer to be hidden
-  $gsap.set(revealer.value, { scaleY: 0 })
+ 
+  $gsap.set(curtain.value, { scaleY: 0 })
   $CustomEase.create("hop", '.9, 0, .1, 1')
 })
 
@@ -27,8 +27,8 @@ const router = useRouter()
 router.beforeEach((to, from) => {
   return new Promise((resolve) => {
     if (from.name && to.name !== from.name) {
-      // Start transition - show revealer
-      $gsap.to(revealer.value, {
+     
+      $gsap.to(curtain.value, {
         scaleY: 1,
         duration: 0.4,
         ease: "hop",
@@ -43,8 +43,8 @@ router.beforeEach((to, from) => {
 })
 
 router.afterEach(() => {
-  // End transition - hide revealer
-  $gsap.to(revealer.value, {
+
+  $gsap.to(curtain.value, {
     scaleY: 0,
     duration: 1.25,
     ease: "hop",
