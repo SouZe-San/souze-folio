@@ -78,8 +78,8 @@
 </template>
 
 <script lang="ts" setup>
-import { SplitText } from "gsap/SplitText";
-import gsap from "gsap";
+
+const { $gsap , $SplitText } = useNuxtApp()
 
 const { setHover } = useHover();
 const { cursorPosition } = useCursorPosition();
@@ -118,11 +118,11 @@ function clipHidden() {
 const moveMask = (x: number, y: number, size: number) => {
   if (!maskBody.value) return;
 
-  gsap.set(maskBody.value, {
+  $gsap.set(maskBody.value, {
     maskPosition: `${x - size / 2}px ${y - size / 2}px`,
     ease: "back.out",
   });
-  gsap.set(maskBody.value, {
+  $gsap.set(maskBody.value, {
     maskSize: size,
     ease:"power3.inOut"
   });
@@ -153,7 +153,7 @@ watchEffect((onCleanup) => {
 
 onMounted(() => {
   if(!document.getElementsByClassName('aboutSection')) return
-  const triggerTl = gsap.timeline({
+  const triggerTl = $gsap.timeline({
     scrollTrigger: {
       trigger: ".aboutSection",
       start: "top center",
@@ -173,7 +173,7 @@ onMounted(() => {
       ease: "power3.out",
     }
   );
-  SplitText.create(".headText", {
+  $SplitText.create(".headText", {
     type: "chars",
     onSplit(self) {
       return triggerTl.fromTo(
@@ -204,7 +204,7 @@ onMounted(() => {
     }
   );
 
-  gsap.fromTo(
+  $gsap.fromTo(
     ".text",
     { opacity: 0 },
     {
@@ -221,11 +221,11 @@ onMounted(() => {
     }
   );
 
-  SplitText.create(".text", {
+  $SplitText.create(".text", {
     type: "chars,words",
     autoSplit: true,
     onSplit(self) {
-      return gsap.fromTo(
+      return $gsap.fromTo(
         self.chars,
         {
           autoAlpha: 0.2,

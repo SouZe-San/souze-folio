@@ -53,7 +53,7 @@
 </template>
 
 <script lang="ts" setup>
-import gsap from "gsap";
+const { $gsap } = useNuxtApp();
 
 const { setHover } = useHover();
 const { cursorPosition } = useCursorPosition();
@@ -85,11 +85,11 @@ const updateMousePosition = (e: MouseEvent) => {
 const moveCircle = (x: number, y: number, size: number) => {
   if (!maskBody.value) return;
 
-  gsap.set(maskBody.value, {
+  $gsap.set(maskBody.value, {
     maskPosition: `${x - size / 2}px ${y - size / 2}px`,
     ease: "back.out",
   });
-  gsap.set(maskBody.value, {
+  $gsap.set(maskBody.value, {
     maskSize: size,
     ease:"power3.inOut"
   });

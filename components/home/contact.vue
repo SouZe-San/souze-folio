@@ -21,11 +21,11 @@
 <script lang="ts" setup>
 
 const { setHover } = useHover();
-import gsap from "gsap";
+const { $gsap } = useNuxtApp()
 
 
 onMounted(()=>{
-  gsap.fromTo('.borderBox',{
+  $gsap.fromTo('.borderBox',{
     width:'100%',
     height:'100%',
     borderRadius:0,
@@ -43,7 +43,7 @@ onMounted(()=>{
       toggleActions: "play none reverse reverse",
     },
     onComplete:()=>{
-      gsap.fromTo('.anime-text',{
+      $gsap.fromTo('.anime-text',{
         y:100,autoAlph:0
       },{
         y:0,
@@ -53,7 +53,7 @@ onMounted(()=>{
       })
     },
     onReverseComplete:()=>{
-      gsap.to('.anime-text',{
+      $gsap.to('.anime-text',{
           y:100,autoAlph:0,alpha:0
       })
     }

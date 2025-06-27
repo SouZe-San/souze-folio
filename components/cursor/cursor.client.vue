@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import { gsap } from "gsap";
+const { $gsap } = useNuxtApp()
 import { ref, onMounted } from "vue";
 
 const mouse = ref({ x: 50, y: 50 });
@@ -32,7 +32,7 @@ const updateMousePosition = (e: MouseEvent) => {
 
 const moveCircle = (x: number, y: number,size:number) => {
   if(!cursor.value) return
-  gsap.set(cursor.value, {
+  $gsap.set(cursor.value, {
     x,
     y,
     xPercent: -50,
@@ -40,7 +40,7 @@ const moveCircle = (x: number, y: number,size:number) => {
     ease: "back.out",
   });
 
-  gsap.set(cursor.value,{
+  $gsap.set(cursor.value,{
     width:size,
     duration:800,
     ease:"power3.inOut"
@@ -50,10 +50,10 @@ const moveCircle = (x: number, y: number,size:number) => {
 const animate = () => {
   const { x, y } = delayedMouse.value;
 
-//  using Gsap Utils Fun
+//  using GSAP Utils Fun
   delayedMouse.value = {
-    x: computed(() => gsap.utils.interpolate(x, mouse.value.x, 0.075)).value,
-    y: computed(() => gsap.utils.interpolate(y, mouse.value.y, 0.075)).value,
+    x: computed(() => $gsap.utils.interpolate(x, mouse.value.x, 0.075)).value,
+    y: computed(() => $gsap.utils.interpolate(y, mouse.value.y, 0.075)).value,
   };
   
   // Using own func

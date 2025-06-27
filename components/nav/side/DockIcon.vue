@@ -100,13 +100,13 @@ const updateScale = () => {
   }
 }
 
-import { gsap } from 'gsap'
+const { $gsap } = useNuxtApp()
 
 const handleMouseEnter = () => {
   hovered.value = true
   
   if (tooltip.value) {
-    gsap.fromTo(tooltip.value,
+    $gsap.fromTo(tooltip.value,
       {
        opacity: 0,
         x: 0
@@ -123,7 +123,7 @@ const handleMouseEnter = () => {
 }
 const handleMouseLeave = () => {
   if (tooltip.value) {
-    gsap.to(tooltip.value, {
+    $gsap.to(tooltip.value, {
       opacity: 0,
       x: 0,
       duration: 0.15,

@@ -65,7 +65,7 @@
 <script lang="ts" setup>
 import { type TechIconType, techIcons } from "~/assets/images/logos";
 const { setHover } = useHover();
-import gsap from "gsap";
+const {$gsap} = useNuxtApp()
 
 function scaleUp() {
   setHover(true, "big");
@@ -91,11 +91,11 @@ const techStack: TechIconType[] = [
 import img from "~/assets/images/projects/002.png";
 
 const manageMouseEnter = (e: MouseEvent) => {
-  gsap.to(e.target, { top: "-6vw",background:'linear-gradient(45deg,rgba(54, 54, 54, 1) 0%, rgba(31, 30, 30, 1) 34%, rgba(31, 28, 28, 0.97) 63%, rgba(59, 55, 55, 1) 94%)', duration: 0.3, ease: "power2.inOut" });
+  $gsap.to(e.target, { top: "-6vw",background:'linear-gradient(45deg,rgba(54, 54, 54, 1) 0%, rgba(31, 30, 30, 1) 34%, rgba(31, 28, 28, 0.97) 63%, rgba(59, 55, 55, 1) 94%)', duration: 0.3, ease: "power2.inOut" });
 };
 
 const manageMouseLeave = (e: MouseEvent) => {
-  gsap.to(e.target, { top: "0",background:'#151515', duration: 0.3, delay: 0.1});
+  $gsap.to(e.target, { top: "0",background:'#151515', duration: 0.3, delay: 0.1});
 };
 </script>
 

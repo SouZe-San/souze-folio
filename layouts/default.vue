@@ -12,13 +12,13 @@
 </template>
 
 <script lang="ts" setup>
-import gsap from 'gsap'
+
 const revealer = ref(null)
-import CustomEase from 'gsap/CustomEase'
+const { $gsap, $CustomEase } = useNuxtApp();
 onMounted(() => {
   // Initialize revealer to be hidden
-  gsap.set(revealer.value, { scaleY: 0 })
-  CustomEase.create("hop", '.9, 0, .1, 1')
+  $gsap.set(revealer.value, { scaleY: 0 })
+  $CustomEase.create("hop", '.9, 0, .1, 1')
 })
 
 // Handle page transitions
@@ -28,7 +28,7 @@ router.beforeEach((to, from) => {
   return new Promise((resolve) => {
     if (from.name && to.name !== from.name) {
       // Start transition - show revealer
-      gsap.to(revealer.value, {
+      $gsap.to(revealer.value, {
         scaleY: 1,
         duration: 0.4,
         ease: "power2.inOut",
@@ -44,7 +44,7 @@ router.beforeEach((to, from) => {
 
 router.afterEach(() => {
   // End transition - hide revealer
-  gsap.to(revealer.value, {
+  $gsap.to(revealer.value, {
     scaleY: 0,
     duration: 1.25,
     ease: "hop",

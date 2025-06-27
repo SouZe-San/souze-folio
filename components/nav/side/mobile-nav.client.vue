@@ -56,7 +56,7 @@ const navLink = [
 ];
 
 
-import { gsap } from 'gsap'
+const { $gsap } = useNuxtApp()
 const isOpen = ref<boolean>(false)
 const mainButtonRef = ref<HTMLButtonElement | null>(null);
 let targets: unknown[] ;
@@ -65,17 +65,17 @@ let tl: gsap.core.Timeline;
 onMounted(()=>{
  
   if(!mainButtonRef.value) return
-  targets = gsap.utils.toArray(".nav_button");
+  targets = $gsap.utils.toArray(".nav_button");
   
   if(targets){
-    gsap.set(targets, {
+    $gsap.set(targets, {
         scale: 0,
         opacity: 0,
         rotation: 0,
       });
   }
 
-  tl = gsap.timeline({paused:true});
+  tl = $gsap.timeline({paused:true});
   
   // Rotate main button
   tl.to(mainButtonRef.value, {
