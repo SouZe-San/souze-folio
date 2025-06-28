@@ -2,12 +2,11 @@
   <section
     class="h-screen relative"
     id="skills"
-    @mouseenter="originMouseEnter"
-    @mouseleave="originMouseLeave"
+
   >
     <!-- mask Content -->
     <div
-      class="h-full w-full flex flex-col justify-center items-center gap-16 absolute maskBody"
+      class="h-full w-full flex flex-col justify-center items-center absolute maskBody"
       ref="maskBody"
     >
       <div class="w-full text-center">
@@ -25,12 +24,9 @@
           Techno logia
         </h1>
       </div>
-      <p class="md:w-[70%] text-center text-3xl text-black/60" @mousemove="scaleGrow" @mouseleave="scaleNormal">
-        <span class="text-black font-semibold"> Nothing to boast about here</span> - the best way to
-        understand my skills is by checking out the <NuxtLink to="/projects" class="text-black underline cursor-pointer"><span class="font-changa uppercase">p</span>r<span class="font-changa">o</span>jec<span class="font-changa">ts</span></NuxtLink> I&#39;ve worked on. They speak for
-        themselves and give you a <span class="text-black font-semibold"> clear idea </span> of
-        what I&#39;m proficient in.
-      </p>
+      <div class="md:w-[70%] text-center text-3xl text-black/60" @mousemove="scaleGrow" @mouseleave="scaleNormal">
+        <img :src="img" alt="This is"/>
+      </div>
     </div>
     <!-- Main Content -->
     <div class="h-full w-full flex flex-col justify-center items-center gap-16">
@@ -46,7 +42,7 @@
         </h1>
       </div>
       <p class="md:w-[70%] text-center text-3xl text-white/60">
-        I believe - <span class="text-white font-semibold">M<span class="font-changa">y</span> work speaks <span class="font-changa">louder</span> than words</span>. To really understand my <span class="font-changa capitalize">skills</span>, feel free to check out the <span class="font-changa capitalize">projects</span> I&#39;ve worked on — they&#39;ll give you a better idea of what I&#39;m capable of
+        I believe - <span class="text-white font-semibold">M<span class="font-changa">y</span> work speaks <span class="font-changa">louder</span> than words</span>. To really understand my <span class="font-changa capitalize">skills</span>, feel free to check out the <span class="text-white/80 underline cursor-pointer"><span class="font-changa uppercase">p</span>r<span class="font-changa">o</span>jec<span class="font-changa">ts</span></span> I&#39;ve worked on — they&#39;ll give you a better idea of what I&#39;m capable of
       </p>
     </div>
   </section>
@@ -54,6 +50,7 @@
 
 <script lang="ts" setup>
 const { $gsap } = useNuxtApp();
+import img from '~/assets/images/background/techs.webp'
 
 const { setHover } = useHover();
 const { cursorPosition } = useCursorPosition();
@@ -71,10 +68,12 @@ function originMouseLeave() {
   setHover(false);
 }
 function scaleGrow() {
+  originMouseEnter()
   isOver.value = true;
 }
 
 function scaleNormal() {
+  originMouseLeave()
   isOver.value = false;
 }
 
@@ -122,7 +121,8 @@ watchEffect((onCleanup) => {
   mask-image: url("/public/assets/mask.svg");
   mask-repeat: no-repeat;
   mask-size: 32px;
-  background-color: white;
+  background:url('/assets/images/background/noisy-2.png') repeat,rgb(70, 70, 70);
+  /* background-size: cover; */
   color: black;
   z-index: 1;
   
