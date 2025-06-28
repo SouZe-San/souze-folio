@@ -83,7 +83,9 @@ button{
   border-radius: 15px;
   padding: 5px 24px;
 
-   background: url(/assets/images/background/noisy-2.png), #eeeeee13;
+   background: url("/public/noiseTex.webp") repeat, #eeeeee13;
+   background-size: 100px;
+   /* background: url(/assets/images/background/noisy-2.png), #eeeeee13; */
   backdrop-filter: blur(1rem);
 }
 .anime-text{
