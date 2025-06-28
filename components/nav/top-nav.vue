@@ -37,7 +37,7 @@ setHover(true,"small")
 
 const widthChange = ()=>{
   if(!headerRef.value) return
-   if(  window.scrollY > 670){
+   if(window.innerWidth >=640 && window.scrollY > 670){
    headerRef.value.style.width = '40vw'
   }
   else{
