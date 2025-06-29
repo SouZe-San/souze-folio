@@ -42,6 +42,13 @@
 <script lang="ts" setup>
 import { AllProjects } from "~/components/projects/projectsData";
 
+useHead({
+  title: 'Souze-San || Projects',
+  meta: [
+    { name: 'description', content: 'Some selected projects' }
+  ],
+})
+
 const { setHover } = useHover();
 function scaleGrow() {
   setHover(true);

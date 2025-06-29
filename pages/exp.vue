@@ -82,7 +82,12 @@
 </template>
 
 <script lang="ts" setup>
-
+useHead({
+  title: 'Souze-San ||Experience',
+  meta: [
+    { name: 'description', content: 'Recent Experience and Relevant works positions' }
+  ],
+})
 </script>
 
 <style scoped>
