@@ -1,6 +1,6 @@
 <template>
   <section class="h-screen flex justify-center items-center aboutSection">
-    <div class="container space-y-16 max-sm:px-4">
+    <div class="container lg:w-[85%] space-y-16 max-sm:px-4">
       <div class="heading flex justify-end">
         <div class="inline-block relative text-center content_title">
           <span
