@@ -1,11 +1,11 @@
 <template>
   <section>
-    <Loader/>
+    <!-- <Loader/> -->
     <NavSideNav />
     <NavSocialNav />
-    <NavSideMobileNav />
+    <NavSideMobileNav/>
     <Cursor />
-  <div ref="curtain" class="curtain"></div>
+  <!-- <div ref="curtain" class="curtain"></div> -->
 
     <slot />
   </section>
