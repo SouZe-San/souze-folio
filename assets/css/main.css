@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@100..900&display=swap");
 @import "tailwindcss";
 :root {
   line-height: 1.5;
@@ -96,7 +97,11 @@ body {
   font-optical-sizing: auto;
   font-style: normal;
 }
-
+.font-roboto-condensed {
+  font-family: "Roboto Condensed", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
 main {
   background: url("/assets/images/background/noisy-2.png") center center fixed, #141414;
   min-height: 100vh;
