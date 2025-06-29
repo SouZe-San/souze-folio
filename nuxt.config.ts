@@ -12,6 +12,11 @@ export default defineNuxtConfig({
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },
   },
+  routeRules: {
+    "/": { prerender: true },
+    "/projects": { prerender: true },
+    "/exp": { prerender: true },
+  },
   compatibilityDate: "2025-05-15",
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],

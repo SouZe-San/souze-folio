@@ -120,7 +120,6 @@ const techName = {
 };
 
 const manageMouseEnter = (e: MouseEvent) => {
-  console.log(matchMedia)
   matchMedia.add("(min-width: 641px)" ,()=>{
 
     $gsap.to(e.target, {

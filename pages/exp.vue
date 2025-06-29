@@ -23,7 +23,7 @@
           </span> 🔓
         </h2>
         <div class=" w-full flex justify-between items-center">
-          <div class=" sm:text-xl text-sm flex flex-col sm:flex-row max-sm:gap-3">
+          <div class=" sm:text-xl text-sm flex flex-col sm:flex-row max-sm:gap-3 gap-5">
             <div>
               <span style="font-weight: 700;">
                 Unified Mentors
@@ -47,7 +47,7 @@
           </span>
         </div>
         <div class=" w-full flex justify-between items-center mt-2">
-         <div class=" sm:text-xl text-sm flex flex-col sm:flex-row max-sm:gap-3">
+         <div class=" sm:text-xl text-sm flex flex-col sm:flex-row max-sm:gap-3 gap-5">
             <div>
             <span style="font-weight: 700;">
               Math Coders</span>

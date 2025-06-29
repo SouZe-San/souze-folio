@@ -89,8 +89,7 @@ const maskBody = ref();
 const rafId = ref<number | null>(null);
 const isOver = ref(false);
 
-const updateMousePosition = (e: MouseEvent) => {
-  console.log(isOver.value)
+const updateMousePosition = (_e: MouseEvent) => {
   size.value = computed(() => (isOver.value ? 200 : 0)).value;
 };
 
@@ -176,7 +175,7 @@ onMounted(() => {
   $SplitText.create(".headText", {
     type: "chars",
     onSplit(self) {
-      return triggerTl.fromTo(
+      triggerTl.fromTo(
         self.chars,
         {
           y: 100,
