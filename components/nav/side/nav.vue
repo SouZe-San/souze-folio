@@ -1,7 +1,10 @@
 <template>
-  <div class="nav-container side-nav-container hidden sm:flex" @mousemove="scaleGrow"
-          @mouseleave="scaleNormal">
-     <nav
+  <div
+    class="nav-container side-nav-container hidden sm:flex"
+    @mousemove="scaleGrow"
+    @mouseleave="scaleNormal"
+  >
+    <nav
       class="flex flex-col gap-4 hover:gap-6 transition-all ease-in-out items-end rounded-2xl"
       @mousemove="handleMouseMove"
       @mouseleave="handleMouseLeave"
@@ -17,69 +20,65 @@
 </template>
 
 <script lang="ts" setup>
+import { NavSideDockIcon } from "#components";
+import { ref } from "vue";
+import Cv from "~/components/icons/nav/cv.vue";
+import Exp from "~/components/icons/nav/exp.vue";
+import Home from "~/components/icons/nav/home.vue";
+import Project from "~/components/icons/nav/project.vue";
+import Skills from "~/components/icons/nav/skills.vue";
 
-import { NavSideDockIcon } from '#components';
-import { ref } from 'vue';
-import Cv from '~/components/icons/nav/cv.vue';
-import Exp from '~/components/icons/nav/exp.vue';
-import Home from '~/components/icons/nav/home.vue';
-import Project from '~/components/icons/nav/project.vue';
-import Skills from '~/components/icons/nav/skills.vue';
+const { setHover } = useHover();
 
-  const { setHover } = useHover();
-
-
-function scaleGrow(){
-  setHover(true,'none')
+function scaleGrow() {
+  setHover(true, "none");
 }
 
-function scaleNormal(){
-setHover(false)
+function scaleNormal() {
+  setHover(false);
 }
 
 // / Desktop mouse tracking
-const mouseX = ref(Infinity)
-
+const mouseX = ref(Infinity);
 
 const handleMouseMove = (e: MouseEvent) => {
-  mouseX.value =  Math.abs(e.pageY - window.scrollY)
-  // mouseX.value = e.pageY
-}
+  mouseX.value = Math.abs(e.pageY - window.scrollY);
+};
 
 const handleMouseLeave = () => {
-  mouseX.value = Infinity
-}
+  mouseX.value = Infinity;
+};
 
 const navLink = [
   {
     icon: Home,
     label: "Home",
     href: "/",
-    hoverClass:"hover:text-[white]"
+    hoverClass: "hover:text-[white]",
   },
   {
     icon: Project,
     label: "Projects",
     href: "/projects",
-    hoverClass:"hover:text-[#ffea05]"
+    hoverClass: "hover:text-[#ffea05]",
   },
   {
     icon: Exp,
     label: "Experience",
     href: "/exp",
-    hoverClass:"hover:text-[#9f05ff]"
+    hoverClass: "hover:text-[#9f05ff]",
   },
   {
     icon: Skills,
     label: "Skills",
     href: "/#skills",
-    hoverClass:"hover:text-[#04ff96]"
+    hoverClass: "hover:text-[#04ff96]",
   },
   {
     icon: Cv,
     label: "CV",
-    href: "/",
-    hoverClass:"hover:text-[#ff6d05]"
+    href: "https://drive.google.com/drive/folders/1O-RC1VYK0zxeeU7YgJ7XE0uAPNlb7FKY?usp=sharing",
+    hoverClass: "hover:text-[#ff6d05]",
   },
 ];
 </script>
@@ -93,8 +92,8 @@ const navLink = [
 .nav-list {
   transform-style: preserve-3d;
   transform: perspective(1000px);
-  &:hover{
-    gap:1.2rem
+  &:hover {
+    gap: 1.2rem;
   }
 
   .nav-button {

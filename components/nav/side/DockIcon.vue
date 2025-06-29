@@ -2,6 +2,7 @@
   <NuxtLink
     :to="item.href"
     :class="['hover:space-y-2 hover:translate-x-2.5 transition-all duration-300 ease-in-out text-[#C0C0C0]',item.hoverClass]"
+    :target="item.label === 'CV' ? '_blank' :'_self'"
   >
     <div
       ref="iconContainer"
@@ -53,6 +54,8 @@ const iconWrapper = ref<HTMLElement>()
 const tooltip = ref<HTMLElement>()
 const hovered = ref(false)
 
+const { $gsap } = useNuxtApp()
+
 const containerScale = ref(1)
 const translateValue = ref(0)
 const iconScale = ref(1)
@@ -84,23 +87,22 @@ const updateScale = () => {
   const distance = calculateDistance()
   const absDistance = Math.abs(distance)
   
-  // Calculate scale based on distance
+
   if (absDistance <= 80) {
-    // Map distance to scale (closer = bigger)
+    
     const normalizedDistance = absDistance / 80
-    const newScale = 2 - normalizedDistance // 2 at center, 1 at edges
+    const newScale = 2 - normalizedDistance 
     containerScale.value = newScale
     iconScale.value = newScale -.4 ;
     translateValue.value = newScale * 8
-    paddingValue.value = ((newScale - 1) / (2 - 1)) * (4 - 0) + 0 // Adjust translation based on distance
+    paddingValue.value = ((newScale - 1) / (2 - 1)) * (4 - 0) + 0 
   } else {
-    translateValue.value = 0 // Adjust translation based on distance
+    translateValue.value = 0 
     containerScale.value = 1
     iconScale.value = 1
   }
 }
 
-const { $gsap } = useNuxtApp()
 
 const handleMouseEnter = () => {
   hovered.value = true
