@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@100..900&display=swap");
 @import "tailwindcss";
 :root {
   line-height: 1.5;
@@ -18,7 +19,7 @@
 }
 @font-face {
   font-family: "CinzelDecorative-black";
-  src: url("/assets/fonts/Cinzel_Decorative/CinzelDecorative-Black.ttf") format("truetype");
+  src: url("/public/fonts/Cinzel_Decorative/CinzelDecorative-Black.ttf") format("truetype");
 }
 @font-face {
   font-family: "changa";
@@ -26,7 +27,6 @@
 }
 
 html {
-  /* font-size: 15px; */
   scroll-behavior: smooth;
 }
 
@@ -45,7 +45,17 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.curtain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100vw;
+  height: 100svh;
+  transform-origin: center top;
+  background-color: #151414;
+  pointer-events: none;
+}
 .nav-container {
   width: 5rem;
   position: fixed;
@@ -86,8 +96,35 @@ body {
   font-optical-sizing: auto;
   font-style: normal;
 }
-/* @media (width <= 640px) {
-  body {
+.font-roboto-condensed {
+  font-family: "Roboto Condensed", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+main {
+  background: url("/assets/images/background/noisy-2.png") center center fixed, #141414;
+  min-height: 100vh;
+}
+.back_white_blob_top {
+  width: 34vw;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  position: absolute;
+  z-index: 1;
+  box-shadow: 0px 0 14rem 10rem rgba(149, 147, 147, 0.31);
+  border-radius: 8% 52% 0% 100%/0% 0% 91% 100%;
+}
+.back_white_blob_down {
+  width: 10vw;
+  position: absolute;
+  z-index: 1;
+  bottom: 22%;
+  left: -6%;
+  box-shadow: 0px 0 10rem 3rem rgba(177, 237, 247, 0.49);
+}
+@media (width <= 640px) {
+  main {
     min-height: 100svh;
   }
-} */
+}

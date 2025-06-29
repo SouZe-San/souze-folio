@@ -1,9 +1,11 @@
 <template>
+  <ClientOnly>
   <div class="cursor" ref="cursor"></div>
+  </ClientOnly>
 </template>
 
 <script lang="ts" setup>
-import { gsap } from "gsap";
+const { $gsap } = useNuxtApp()
 import { ref, onMounted } from "vue";
 
 const mouse = ref({ x: 50, y: 50 });
@@ -13,6 +15,8 @@ const rafId = ref<number | null>(null);
 
 const {isHover, scaleType} = useHover()
 const size = ref(32)
+
+const {setPosition} = useCursorPosition()
 
 const lerp = (x: number, y: number, a: number) => x * (1 - a) + y * a;
 
@@ -27,20 +31,16 @@ const updateMousePosition = (e: MouseEvent) => {
 };
 
 const moveCircle = (x: number, y: number,size:number) => {
-  
-  gsap.set(cursor.value, {
+  if(!cursor.value) return
+  $gsap.set(cursor.value, {
     x,
     y,
     xPercent: -50,
     yPercent: -50,
-  
-    // ease: "power3.out",
     ease: "back.out",
-    // duration:.3,
-    
   });
 
-  gsap.set(cursor.value,{
+  $gsap.set(cursor.value,{
     width:size,
     duration:800,
     ease:"power3.inOut"
@@ -50,10 +50,10 @@ const moveCircle = (x: number, y: number,size:number) => {
 const animate = () => {
   const { x, y } = delayedMouse.value;
 
-//  using Gsap Utils Fun
+//  using GSAP Utils Fun
   delayedMouse.value = {
-    x: computed(() => gsap.utils.interpolate(x, mouse.value.x, 0.075)).value,
-    y: computed(() => gsap.utils.interpolate(y, mouse.value.y, 0.075)).value,
+    x: computed(() => $gsap.utils.interpolate(x, mouse.value.x, 0.075)).value,
+    y: computed(() => $gsap.utils.interpolate(y, mouse.value.y, 0.075)).value,
   };
   
   // Using own func
@@ -63,7 +63,7 @@ const animate = () => {
   // };
 
  
-
+  setPosition(delayedMouse.value.x, delayedMouse.value.y)
   moveCircle(delayedMouse.value.x, delayedMouse.value.y, size.value);
 
   rafId.value = window.requestAnimationFrame(animate);
@@ -89,8 +89,7 @@ onMounted(() => {
 
 <style scoped>
 .cursor {
-  position: absolute;
-  /* width: 2rem; */
+  position: fixed;
   width: 32px;
   aspect-ratio: 1;
   background: white;

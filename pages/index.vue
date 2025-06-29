@@ -1,20 +1,22 @@
 <template>
-  <NuxtLayout>
+  <main>
+      <NavTopNav />
+         <NavSocialNav />
+           <NavSideNav />
     <section class="heroSection relative overflow-hidden bgBlur">
       <img :src="grid" alt="Logo" class="grid" />
       <div class="back_white_blob_top"></div>
       <div class="back_white_blob_down"></div>
 
       <div
-        class="flex flex-col items-center justify-center max-sm:justify-start max-sm:pt-16 h-full gap-4"
+        class="flex flex-col items-center justify-center max-sm:justify-start max-sm:pt-16 max-sm:mt-[6rem]  h-full"
       >
         <div
-          class="name-main wi-full text-center relative"
+          class="name-main text-center relative"
           @mousemove="scaleGrow"
           @mouseleave="scaleNormal"
-         
         >
-          <span class="absolute -top-[10%] -left-4"> Hii, I&#39;am </span>
+          <span class="absolute md:-top-[5%] -top-[10%] md:-left-4 left-0"> Hii, I&#39;m </span>
           <h1 class="text-[48px] md:text-8xl font-bold font-cinzel-bold text-white -translate-4">
             <span>S</span>oumayjit
           </h1>
@@ -22,29 +24,40 @@
           <h1 class="text-[48px] md:text-8xl font-bold font-cinzel-bold text-white">Mondal</h1>
         </div>
 
-        <h3 class="text-end">
-          full-stack developer from India, love to explore, build wired things and solving problems.
+        <h3 class="text-end text-white/70">
+          Full-stack <span class="font-changa capitalize text-white">developer</span>, love to
+          explore, build <span class="font-changa text-white"> wired </span>things and solving
+          problems.
         </h3>
       </div>
     </section>
-  </NuxtLayout>
+    <HomeAbout />
+    <HomeSkills />
+    <HomeContact />
+  </main>
 </template>
 
 <script setup>
 import grid from "~/assets/images/background/grid.svg";
 const { setHover } = useHover();
-
-
-function scaleGrow(){
-  setHover(true)
+function scaleGrow() {
+  setHover(true);
 }
 
-function scaleNormal(){
-setHover(false)
+function scaleNormal() {
+  setHover(false);
 }
-
 </script>
 <style scoped>
+main {
+  background: url("/assets/images/background/noisy-2.png") center center fixed,
+    linear-gradient(327.21deg, #141414 3.65%, rgba(26, 26, 26, 0) 40.32%),
+    linear-gradient(245.93deg, rgba(36, 35, 36, 0.27) 0%, rgba(235, 235, 235, 0) 36.63%),
+    linear-gradient(147.6deg, rgba(0, 0, 0, 0) 29.79%, rgba(0, 0, 0, 0.03) 85.72%), #141414;
+  width: 100vw;
+  min-height: 100vh;
+}
+
 .grid {
   position: fixed;
   top: 0;
@@ -111,7 +124,7 @@ setHover(false)
 }
 
 h3 {
-  width: 75%;
+  width: 65%;
   font-size: 18px;
 }
 
@@ -132,6 +145,7 @@ h3 {
     }
   }
   h3 {
+    width: 80%;
     font-size: 15px;
   }
 }
