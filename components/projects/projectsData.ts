@@ -82,7 +82,7 @@ export const AllProjects: Project[] = [
       first: "The",
       last: "Ryit",
     },
-    description: "Website for a Educational Service",
+    description: "🏫 An educational course and blog management platform.",
     date: {
       month: "June",
       year: "2024",

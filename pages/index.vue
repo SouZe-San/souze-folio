@@ -1,6 +1,8 @@
 <template>
   <main>
       <NavTopNav />
+         <NavSocialNav />
+           <NavSideNav />
     <section class="heroSection relative overflow-hidden bgBlur">
       <img :src="grid" alt="Logo" class="grid" />
       <div class="back_white_blob_top"></div>

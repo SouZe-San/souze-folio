@@ -4,10 +4,10 @@
     @mouseenter="(e) => manageMouseEnter(e)"
     @mouseleave="(e) => manageMouseLeave(e)"
   >
-    <div class="py-4 px-32 inside">
+    <div class="py-4 md:px-32 px-4 inside">
       <div class="flex w-full gap-1 justify-between items-end">
         <div
-          class="flex items-center 2xl:text-[8rem] lg:text-[6.5rem] md:text-5xl text-md font-semibold item-head"
+          class="flex items-center 2xl:text-[8rem] lg:text-[6.5rem] md:text-5xl text-[2rem] font-semibold item-head"
           @mousemove="scaleUp"
           @mouseleave="scaleNormal"
         >
@@ -19,15 +19,15 @@
             <span class="font-cinzel-regular">{{ title.last }}</span>
           </h1>
         </div>
-        <div class="flex flex-col justify-between h-[6rem]">
+        <div class="flex flex-col justify-between sm:h-[6rem] h-[5rem]" :class="(title.first.length + title.last.length) >8 && 'max-sm:-translate-x-1/2'">
           <div class="project-type font-changa uppercase">{{ projectType }}</div>
-          <div class="flex gap-3" @mousemove="scaleMidUp" @mouseleave="scaleNormal">
+          <div class="flex gap-3 max-sm:justify-end" @mousemove="scaleMidUp" @mouseleave="scaleNormal">
             <NuxtLink :to="gitUrl" target="_blank" class="flex items-center gap-1 link">
-            <IconsSocialsGithubLink class="w-10" />
+            <IconsSocialsGithubLink class="sm:w-10 w-6" />
             </NuxtLink>
             <NuxtLink v-if="liveUrl" :to="liveUrl" target="_blank" class="flex items-center gap-1 link">
               <IconsArrow
-                class="w-7 ml-3 text-white opacity-60 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
+                class="sm:w-7 w-4 ml-3 text-white opacity-60 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
             /></NuxtLink>
           </div>
         </div>
@@ -42,7 +42,6 @@
             class="flex gap-2 overflow-x-scroll no-scrollbar tech-stack-section"
             @mousemove="scaleMidUp"
             @mouseleave="scaleNormal"
-
           >
             <span
               v-for="(tech, index) in techStack"
@@ -52,14 +51,14 @@
               <img
                 :src="techIcons[tech]"
                 :alt="`${tech} logo used in title`"
-                class="w-5 aspect-square object-contain"
+                class="sm:w-5 w-3 aspect-square object-contain"
                 loading="lazy"
               />
 
               {{ techName[tech] }}
             </span>
           </div>
-          <div class="text-xl">
+          <div class="sm:text-xl text-[16px]">
             <span class="font-cinzel-bold"> {{ date.month }},</span
             ><span class="font-cinzel-regular"> {{ date.year }}</span>
           </div>
@@ -75,9 +74,14 @@ import type { Project } from "./projectsData";
 
 const { setHover } = useHover();
 const { $gsap } = useNuxtApp();
-
+let matchMedia:gsap.MatchMedia;
+onMounted(()=>{
+  matchMedia = $gsap.matchMedia()
+})
 function scaleUp() {
-  setHover(true, "big");
+  if(window.innerWidth >640){
+setHover(true, "big");
+  }
 }
 function scaleMidUp() {
   setHover(true, "small");
@@ -112,21 +116,30 @@ const techName = {
   threeJs :"Three.js",
   tailwind : "Tailwind CSS",
   ts :"TypeScript",
-  vue :"VueJs",
+  vue :"Vue Js",
 };
 
 const manageMouseEnter = (e: MouseEvent) => {
-  $gsap.to(e.target, {
-    top: "-6rem",
-    background:
-      "linear-gradient(45deg,rgba(54, 54, 54, 1) 0%, rgba(31, 30, 30, 1) 34%, rgba(31, 28, 28, 0.97) 63%, rgba(59, 55, 55, 1) 94%)",
-    duration: 0.4,
-    ease: "power2.inOut",
-  });
+  console.log(matchMedia)
+  matchMedia.add("(min-width: 641px)" ,()=>{
+
+    $gsap.to(e.target, {
+      top: "-6rem",
+      background:
+        "linear-gradient(45deg,rgba(54, 54, 54, 1) 0%, rgba(31, 30, 30, 1) 34%, rgba(31, 28, 28, 0.97) 63%, rgba(59, 55, 55, 1) 94%)",
+      duration: 0.4,
+      ease: "power2.inOut",
+    });
+  }
+  )
+
 };
 
 const manageMouseLeave = (e: MouseEvent) => {
-  $gsap.to(e.target, { top: "0", background: "#151515", duration: 0.3, delay: 0.1 });
+  matchMedia.add("(min-width: 641px)" ,()=>{
+    $gsap.to(e.target, { top: "0", background: "#151515", duration: 0.3, delay: 0.1 });
+  })
+
 };
 </script>
 
@@ -223,5 +236,30 @@ a.link {
       width: 100%;
     }
   }
+}
+
+
+@media (width <= 640px) {
+  .row-item{
+     margin-bottom: 0;
+  }
+  .item-head {
+
+  .img {
+    width: 8rem;
+  }}
+  .project-type {
+  font-size: 12px;}
+
+  .badge{
+    font-size: 12px;
+    letter-spacing: 0.4px;
+    padding: 3px 15px;
+    gap: 4px;
+  }
+  .description {
+  line-height: 1.4;
+  word-spacing: 0;
+}
 }
 </style>

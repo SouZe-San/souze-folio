@@ -4,7 +4,7 @@
     <div class="back_white_blob_top"></div>
     <div class="back_white_blob_down"></div>
 
-    <section class="w-full h-full flex flex-col gap-24 items-center">
+    <section class="w-full h-full flex flex-col sm:gap-24 items-center">
       <div class="w-full text-center mb-20">
         <h1
           class="inline font-cinzel-bold sm:text-6xl text-[40px] max-sm:mt-4 relative"
@@ -21,7 +21,7 @@
         </h1>
       </div>
 
-      <div class="relative w-full mb-30">
+      <div class="relative w-full sm:mb-30 mb-16">
         <ProjectsItemRow
           v-for="(project, index) in AllProjects"
           :key="index.toString()"
@@ -29,7 +29,7 @@
         />
       </div>
 
-      <div class="mb-12 flex justify-center items-center w-full font-changa">
+      <div class="sm:mb-12 mb-30 flex justify-center items-center w-full font-changa">
         <button>
           View More of Them
           <IconsArrow class="w-4" />
@@ -44,9 +44,6 @@ import { AllProjects } from "~/components/projects/projectsData";
 
 const { setHover } = useHover();
 function scaleGrow() {
-  setHover(true);
-}
-function scaleMidGrow() {
   setHover(true);
 }
 
