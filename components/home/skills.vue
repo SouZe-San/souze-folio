@@ -41,7 +41,7 @@
           What I use
         </h1>
       </div>
-      <p class="md:w-[70%] text-center text-3xl text-white/60">
+      <p class="md:w-[70%] text-center text-3xl sm:text-2xl text-[1.15rem] max-sm:px-4 text-white/60">
         I believe - <span class="text-white font-semibold">M<span class="font-changa">y</span> work speaks <span class="font-changa">louder</span> than words</span>. To really understand my <span class="font-changa capitalize">skills</span>, feel free to check out the <span class="text-white/80 underline cursor-pointer"><span class="font-changa uppercase">p</span>r<span class="font-changa">o</span>jec<span class="font-changa">ts</span></span> I&#39;ve worked on — they&#39;ll give you a better idea of what I&#39;m capable of
       </p>
     </div>

@@ -1,16 +1,16 @@
 <template>
   <section class="h-screen flex justify-center items-center aboutSection">
-    <div class="container space-y-16">
+    <div class="container space-y-16 max-sm:px-4">
       <div class="heading flex justify-end">
         <div class="inline-block relative text-center content_title">
           <span
-            class="headSpan absolute md:text-3xl font-cinzel-bold sm:-top-1 opacity-60 text-white/20 left-[50%] -translate-x-[50%]"
+            class="headSpan absolute md:text-3xl sm:text-[.9rem] text-[.7rem] font-cinzel-bold sm:-top-1 opacity-60 text-white/20 left-[50%] -translate-x-[50%]"
             style="letter-spacing: 10px"
-            >What I&#39;m
+            >Who I&#39;m
           </span>
 
           <h1
-            class="md:text-6xl font-cinzel-bold text-white/80 headText overflow-hidden"
+            class="md:text-6xl sm:text-4xl text-[2rem] font-cinzel-bold text-white/80 headText overflow-hidden"
             @mousemove="scaleGrow"
             @mouseleave="scaleNormal"
             style="padding-top: 12px"
@@ -61,7 +61,7 @@
             class="text-black font-changa sm:text-[32px] under-hover"
             style="letter-spacing: 2px; font-weight: 500;"
             >Souze-san</span
-          >, a CS graduate from India with a passion for Wired Things ~_~. A full-stack developer
+          >, on Internet. I have a passion for Wired Things ~_~. A full-stack developer
           who&#39;s all about more than just writing code. It&#39;s about solving  <span
             class="text-black font-changa sm:text-[32px] under-hover"
             style="letter-spacing: 2px"
@@ -294,5 +294,12 @@ onMounted(() => {
 
 .name-alt {
   letter-spacing: 3px;
+}
+
+
+@media (width <= 640px) {
+  .aboutSection{
+    height: 80svh;
+  }
 }
 </style>

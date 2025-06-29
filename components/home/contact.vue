@@ -25,39 +25,50 @@ const { $gsap } = useNuxtApp()
 
 
 onMounted(()=>{
-  $gsap.fromTo('.borderBox',{
-    width:'100%',
-    height:'100%',
-    borderRadius:0,
-    borderColor:'#cfcfcf00'
-  },{
-     width:'70%',
-    height:'75%',
-    borderRadius:15,
-    borderColor:'#cccccc47',
-    scrollTrigger: {
-      trigger: ".contactSection",
-      start: "top center",
-      end: "center center+=50",
-      scrub: true,
-      toggleActions: "play none reverse reverse",
-    },
-    onComplete:()=>{
-      $gsap.fromTo('.anime-text',{
-        y:100,autoAlph:0
-      },{
-        y:0,
-        autoAlpha:1,
-        duration:1,
-        ease:'power2.inOut'
-      })
-    },
-    onReverseComplete:()=>{
-      $gsap.to('.anime-text',{
-          y:100,autoAlph:0,alpha:0
-      })
-    }
-  })
+  const media = $gsap.matchMedia()
+
+  media.add({
+      isDesktop: `(min-width: ${640+1}px)`,
+      isMobile: `(max-width: ${640}px)`
+  }, (context) => {
+  
+  //@ts-ignore
+let {isDesktop,isMobile} = context.conditions
+$gsap.fromTo('.borderBox',{
+  width:'100%',
+  height:'100%',
+  borderRadius:0,
+  borderColor:'#cfcfcf00'
+},{
+   width:'70%',
+  height: isDesktop ?'75%':'65%',
+  borderRadius:15,
+  borderColor:'#cccccc47',
+  scrollTrigger: {
+    trigger: ".contactSection",
+    start: "top center",
+    end: "center center+=50",
+    scrub: true,
+    toggleActions: "play none reverse reverse",
+  },
+  onComplete:()=>{
+    $gsap.fromTo('.anime-text',{
+      y:100,autoAlpha:0
+    },{
+      y:0,
+      autoAlpha:1,
+      duration:1,
+      ease:'power2.inOut'
+    })
+  },
+  onReverseComplete:()=>{
+    $gsap.to('.anime-text',{
+        y:100,autoAlpha:0
+    })
+  }
+})
+})
+
 })
 
 </script>
@@ -90,5 +101,26 @@ button{
 }
 .anime-text{
   opacity: 0;
+}
+
+
+@media (width <= 640px) {
+  footer{
+    height: 90svh;
+  }
+ button{
+  font-size: 12px;
+ 
+  padding: 5px 15px;
+  svg{
+   width: 14px;
+  }
+ }
+ p{
+  padding: 1rem;
+  text-align: center;
+  line-height: 1.2;
+  word-spacing: 5px;
+ }
 }
 </style>

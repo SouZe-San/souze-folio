@@ -7,14 +7,14 @@
       <div class="back_white_blob_down"></div>
 
       <div
-        class="flex flex-col items-center justify-center max-sm:justify-start max-sm:pt-16 h-full"
+        class="flex flex-col items-center justify-center max-sm:justify-start max-sm:pt-16 max-sm:mt-[6rem]  h-full"
       >
         <div
           class="name-main text-center relative"
           @mousemove="scaleGrow"
           @mouseleave="scaleNormal"
         >
-          <span class="absolute -top-[5%] -left-4"> Hii, I&#39;m </span>
+          <span class="absolute md:-top-[5%] -top-[10%] md:-left-4 left-0"> Hii, I&#39;m </span>
           <h1 class="text-[48px] md:text-8xl font-bold font-cinzel-bold text-white -translate-4">
             <span>S</span>oumayjit
           </h1>
@@ -56,11 +56,6 @@ main {
   min-height: 100vh;
 }
 
-@media (width <= 640px) {
-  main {
-    min-height: 100svh;
-  }
-}
 .grid {
   position: fixed;
   top: 0;
@@ -148,6 +143,7 @@ h3 {
     }
   }
   h3 {
+    width: 80%;
     font-size: 15px;
   }
 }
