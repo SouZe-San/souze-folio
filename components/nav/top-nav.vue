@@ -71,12 +71,14 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  backdrop-filter: blur(32px);
+  backdrop-filter: blur(16px);
   background-blend-mode: overlay;
-  background-color: rgba(85, 85, 85, 0.246);
+  background-color: rgba(85, 85, 85, 0.16);
   border-radius: 1rem;
   border: 1px solid #ffffff1c;
-  box-shadow: 2px 4px 6px 1px rgba(0, 0, 0, 0.4117647059);
+  box-shadow: 0px 4px 8px 1px rgba(0, 0, 0, 0.4117647059);
+   /* 2px 4px 6px 1px rgba(0, 0, 0, 0.4117647059); */
+  
   transition: width .4s ease-in-out;
 }
 

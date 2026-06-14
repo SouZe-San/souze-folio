@@ -4,7 +4,7 @@
          <NavSocialNav />
            <NavSideNav />
     <section class="heroSection relative overflow-hidden bgBlur">
-      <img :src="grid" alt="Logo" class="grid" />
+      <img :src="grid" alt="Logo" class="grid" loading="eager"/>
       <div class="back_white_blob_top"></div>
       <div class="back_white_blob_down"></div>
 
@@ -18,7 +18,7 @@
         >
           <span class="absolute md:-top-[5%] -top-[10%] md:-left-4 left-0"> Hii, I&#39;m </span>
           <h1 class="text-[48px] md:text-8xl font-bold font-cinzel-bold text-white -translate-4">
-            <span>S</span>oumayjit
+            <span>S</span>oumyajit
           </h1>
 
           <h1 class="text-[48px] md:text-8xl font-bold font-cinzel-bold text-white">Mondal</h1>
@@ -26,8 +26,8 @@
 
         <h3 class="text-end text-white/70">
           Full-stack <span class="font-changa capitalize text-white">developer</span>, love to
-          explore, build <span class="font-changa text-white"> wired </span>things and solving
-          problems.
+          explore, build <span class="font-changa text-white"> weird </span>things and solving
+          problems
         </h3>
       </div>
     </section>
@@ -73,7 +73,7 @@ main {
     rgba(0, 0, 0, 0) 100%
   );
   z-index: -10;
-  opacity: 0.3;
+  opacity: 0.24;
 }
 
 .heroSection {
@@ -83,7 +83,7 @@ main {
   background: url("/_nuxt/assets/images/background/noisy-2.png") center center fixed,
     linear-gradient(327.21deg, #141414 3.65%, rgba(26, 26, 26, 0) 40.32%),
     linear-gradient(245.93deg, rgba(36, 35, 36, 0.27) 0%, rgba(235, 235, 235, 0) 36.63%),
-    linear-gradient(147.6deg, rgba(0, 0, 0, 0) 29.79%, rgba(0, 0, 0, 0.03) 85.72%), #141414;
+    linear-gradient(147.6deg, rgba(0, 0, 0, 0) 29.79%, rgba(0, 0, 0, 0.03) 85.72%), #121212;
 }
 
 .bgBlur {
@@ -103,9 +103,11 @@ main {
   width: 10vw;
   position: absolute;
   z-index: -3;
-  bottom: 22%;
+  /* bottom: 22%; */
+  bottom: 30%;
   left: -6%;
   box-shadow: 0px 0 10rem 3rem rgba(177, 237, 247, 0.49);
+  /* rgba(39, 144, 220, 0.43) */
 }
 
 .name-main {
