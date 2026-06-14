@@ -1,6 +1,6 @@
 <template>
   <section class="h-screen flex justify-center items-center aboutSection">
-    <div class="container lg:w-[85%] space-y-16 max-sm:px-4">
+    <div class="container lg:max-w-7xl space-y-16 max-sm:px-4">
       <div class="heading flex justify-end">
         <div class="inline-block relative text-center content_title">
           <span
@@ -28,26 +28,26 @@
       >
         <div class="contentBody text md:text-3xl text-white/70">
           <span class="sm:text-4xl text-white" style="letter-spacing: 0"> Hey There! </span>
-          I&#39;am
+          I&#39;m
           <span
             id="owner"
             class="text-white font-changa sm:text-[32px] relative"
             >Soumyajit Mondal </span
           >, a Computer Science Graduate from India with a passion for clean code and wired Design.
-          Now, i Build as a
+          Now, i build as a
           <span
             class="sm:text-[32px] font-changa text-white"
           >
             Full-stack Developer
           </span>
-          who Loves turing ideas into interactive, scalable digital experience. Whether it&#39;s
+          who loves turning ideas into interactive, scalable digital experience. Whether it&#39;s
           front-end magic or back-end logic, I enjoy crafting thing that solve
           <span
             class="sm:text-[32px] font-changa text-white"
           >
             real problem
           </span>
-          and spark curiosity. Always exploring, always building - One line of code at a time.
+          and spark curiosity. Always exploring, always building - one line of code at a time.
         </div>
 
         <!-- Hidden Content -->
@@ -56,12 +56,12 @@
          @mousemove="clipGrow"
           @mouseleave="clipHidden"
         >
-          <span class="sm:text-4xl text-black" style="letter-spacing: 0"> Hey there! </span> My self
+          <span class="sm:text-4xl text-black" style="letter-spacing: 0"> Hey there! </span> Myself
           <span
             class="text-black font-changa sm:text-[32px] under-hover"
             style="letter-spacing: 2px; font-weight: 500;"
             >Souze-san</span
-          >, on Internet. I have a passion for Wired Things ~_~. A full-stack developer
+          >, on Internet. I have a passion for wired Things ~_~. A full-stack developer
           who&#39;s all about more than just writing code. It&#39;s about solving  <span
             class="text-black font-changa sm:text-[32px] under-hover"
             style="letter-spacing: 2px"
@@ -88,6 +88,7 @@ const size = ref(0);
 const maskBody = ref();
 const rafId = ref<number | null>(null);
 const isOver = ref(false);
+const isVisible = ref(false);
 
 const updateMousePosition = (_e: MouseEvent) => {
   size.value = computed(() => (isOver.value ? 200 : 0)).value;
@@ -106,50 +107,120 @@ function scaleNormal() {
 }
 
 function clipGrow() {
+  cacheRect()
   isOver.value = true;
 }
 function clipHidden() {
   isOver.value = false;
 }
 
+// ! Cache the element box so the rAF loop never forces a layout read.
+let boxX = 0;
+let boxY = 0;
+const cacheRect = () => {
+  if (!maskBody.value) return;
+  const r = maskBody.value.getBoundingClientRect();
+  boxX = r.x;
+  boxY = r.y;
+};
+
 
 // Mask Animation
 const moveMask = (x: number, y: number, size: number) => {
   if (!maskBody.value) return;
 
-  $gsap.set(maskBody.value, {
+  // $gsap.set(maskBody.value, {
+  //   maskPosition: `${x - size / 2}px ${y - size / 2}px`,
+  //   ease: "back.out",
+  // });
+  // $gsap.set(maskBody.value, {
+  //   maskSize: size,
+  //   ease:"power3.inOut"
+  // });
+    $gsap.set(maskBody.value, {
     maskPosition: `${x - size / 2}px ${y - size / 2}px`,
-    ease: "back.out",
-  });
-  $gsap.set(maskBody.value, {
     maskSize: size,
-    ease:"power3.inOut"
   });
-
 };
 
 
 const animate = () => {
-  if (!maskBody.value) return;
-  const { x, y } = cursorPosition.value;
-  const { x:boxX,y: boxY } = maskBody.value.getBoundingClientRect();
+  // if (!maskBody.value) return;
+    if (!maskBody.value || !isVisible.value) {
+    rafId.value = null;
+    return;
+  }
 
-  moveMask(x-boxX, y - boxY, size.value);
+  const { x, y } = cursorPosition.value;
+  // const { x:boxX,y: boxY } = maskBody.value.getBoundingClientRect();
+
+  // moveMask(x-boxX, y - boxY, size.value);
+   moveMask(x - boxX, y - boxY, size.value);
 
   rafId.value = window?.requestAnimationFrame(animate);
 };
 
 
 watchEffect((onCleanup) => {
-  animate();
-  maskBody.value?.addEventListener("mousemove", updateMousePosition);
+  // animate();
+  // maskBody.value?.addEventListener("mousemove", updateMousePosition);
+
+  // onCleanup(() => {
+  //   maskBody.value?.removeEventListener("mousemove", updateMousePosition);
+  //   window?.cancelAnimationFrame(rafId.value!);
+  // });
+
+    if (!maskBody.value) return;
+
+  cacheRect();
+
+  // Only run the loop while the section is actually on screen.
+  const io = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      cacheRect();
+      if (rafId.value == null) animate();
+    } else if (rafId.value != null) {
+      window?.cancelAnimationFrame(rafId.value);
+      rafId.value = null;
+    }
+  });
+  io.observe(maskBody.value);
+
+  maskBody.value.addEventListener("mousemove", updateMousePosition);
+  window.addEventListener("scroll", cacheRect, { passive: true });
+  window.addEventListener("resize", cacheRect);
 
   onCleanup(() => {
+    io.disconnect();
     maskBody.value?.removeEventListener("mousemove", updateMousePosition);
-    window?.cancelAnimationFrame(rafId.value!);
-  });
+    window?.removeEventListener("scroll", cacheRect);
+    window?.removeEventListener("resize", cacheRect);
+    if (rafId.value != null) window?.cancelAnimationFrame(rafId.value);
+    rafId.value = null;
+   });
+
 });
 
+// =---Add New 
+let maskObserver: IntersectionObserver | null = null;
+ 
+onMounted(() => {
+  maskObserver = new IntersectionObserver(
+    ([entry]) => {
+      isVisible.value = entry.isIntersecting;
+      // Restart the loop when the section scrolls back into view
+      if (entry.isIntersecting && rafId.value == null) animate();
+    },
+    { threshold: 0 }
+  );
+  if (maskBody.value) maskObserver.observe(maskBody.value);
+});
+ 
+onUnmounted(() => {
+  maskObserver?.disconnect();
+});
+
+// -------
 onMounted(() => {
   if(!document.getElementsByClassName('aboutSection')) return
   const triggerTl = $gsap.timeline({
@@ -165,10 +236,12 @@ onMounted(() => {
   triggerTl.fromTo(
     ".line",
     {
-      width: 0,
+      // width: 0,
+       scaleX: 0,
     },
     {
-      width: "100%",
+      // width: "100%",
+  scaleX: 1,
       ease: "power3.out",
     }
   );
@@ -209,7 +282,9 @@ onMounted(() => {
     {
       opacity: 1,
       duration: 0.4,
-      ease: "power2.out",
+      ease: "power2.out", 
+      //  onStart: () => $gsap.set(".text", { willChange: "opacity" }), 
+      //  onComplete: () => $gsap.set(".text", { willChange: "auto" }),
       scrollTrigger: {
         trigger: ".aboutSection",
         start: "top center-=50",
@@ -254,6 +329,9 @@ onMounted(() => {
   width: 100%;
   height: 1px;
   background: rgba(255, 255, 255, 0.828);
+  transform-origin: left center;
+  will-change: transform;
+
 }
 
 .contentBody,
@@ -295,6 +373,9 @@ onMounted(() => {
   letter-spacing: 3px;
 }
 
+.text{
+  will-change: opacity;
+}
 
 @media (width <= 640px) {
   .aboutSection{
