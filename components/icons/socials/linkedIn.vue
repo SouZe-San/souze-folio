@@ -14,14 +14,14 @@
 <style scoped>
 .blink {
 
+  fill: currentColor;
   animation: blink-animation 1.5s steps(5, start) infinite;
 }
 @keyframes blink-animation {
     from {
-        opacity: .5;
+        opacity: .2;
     }
   to {
-    fill: currentColor;
     opacity: 1;
     /* visibility: hidden; */
   }
