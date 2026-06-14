@@ -1,7 +1,7 @@
 // 🧠 General Info
 export const AUTHOR = "Soumyajit Mondal";
 export const SITE_NAME = "Soumyajit Mondal|| Portfolio";
-export const DOMAIN = "https://souze-san.vercel.app/";
+export const DOMAIN = "https://souze-san.vercel.app";
 export const OG_IMAGE = `${DOMAIN}/assets/profile.png`;
 
 // 📣 Open Graph
