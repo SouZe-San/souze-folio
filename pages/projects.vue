@@ -22,11 +22,14 @@
       </div>
 
       <div class="relative w-full sm:mb-30 mb-16">
+        <SharedBackground>
         <ProjectsItemRow
           v-for="(project, index) in AllProjects"
           :key="index.toString()"
+          data-shb-item
           v-bind="project"
         />
+ </SharedBackground>
       </div>
 
       <div class="sm:mb-12 mb-30 flex justify-center items-center w-full font-changa">
