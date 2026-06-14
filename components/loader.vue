@@ -1,23 +1,23 @@
 <template>
   <div class="loader" ref="loader">
     <div class="count-wrapper">
-      <div class="count">
-        <div class="digit"><h1>9</h1></div>
-        <div class="digit"><h1>8</h1></div>
-        <div class="digit"><h1>6</h1></div>
-        <div class="digit"><h1>4</h1></div>
-        <div class="digit"><h1>2</h1></div>
-        <div class="digit"><h1>0</h1></div>
+      <div class="count" aria-hidden="true">
+        <div class="digit"><span>9</span></div>
+        <div class="digit"><span>8</span></div>
+        <div class="digit"><span>6</span></div>
+        <div class="digit"><span>4</span></div>
+        <div class="digit"><span>2</span></div>
+        <div class="digit"><span>0</span></div>
       </div>
     </div>
     <div class="count-wrapper">
-      <div class="count">
-        <div class="digit"><h1>9</h1></div>
-        <div class="digit"><h1>8</h1></div>
-        <div class="digit"><h1>9</h1></div>
-        <div class="digit"><h1>4</h1></div>
-        <div class="digit"><h1>5</h1></div>
-        <div class="digit"><h1>0</h1></div>
+      <div class="count" aria-hidden="true">
+        <div class="digit"><span>9</span></div>
+        <div class="digit"><span>8</span></div>
+        <div class="digit"><span>9</span></div>
+        <div class="digit"><span>4</span></div>
+        <div class="digit"><span>5</span></div>
+        <div class="digit"><span>0</span></div>
       </div>
     </div>
 
@@ -117,9 +117,12 @@ onMounted(() => {
     }
   );
 
-  $gsap.set(".revealer svg", { scale: 0 });
+  // $gsap.set(".revealer svg", { scale: 0 });
+  $gsap.set(".revealer", { scale: 0 }); 
   const delays = [6, 6.5, 7];
-  $gsap.utils.toArray(".revealer svg").forEach((el, i) => {
+
+  // $gsap.utils.toArray(".revealer svg").forEach((el, i) => {
+  $gsap.utils.toArray(".revealer").forEach((el, i) => { 
     if (!el) return;
     $gsap.to(el, {
       scale: 45,
@@ -142,12 +145,16 @@ onMounted(() => {
     });
   });
 
-  $gsap.from(".name-main h1", {
-    scale: 0,
-    duration: 1,
-    ease: "power3.inOut",
-    delay: 8,
-  });
+  // $gsap.from(".name-main h1", {
+  //   scale: 0,
+  //   duration: 1,
+  //   ease: "power3.inOut",
+  //   delay: 8,
+  // });
+  $gsap.fromTo(".name-main span",
+  { scale: 0 },
+  { scale: 1, duration: 1, ease: "power3.inOut", delay: 8 }
+);
 });
 </script>
 
@@ -185,7 +192,8 @@ onMounted(() => {
   width: inherit;
   height: inherit;
 
-  h1 {
+  span {
+    display: block;
     position: relative;
     top: 50%;
     left: 50%;
@@ -206,5 +214,6 @@ onMounted(() => {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+    will-change: transform; 
 }
 </style>
