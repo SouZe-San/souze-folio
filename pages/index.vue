@@ -1,32 +1,42 @@
 <template>
   <main>
-      <NavTopNav />
-         <NavSocialNav />
-           <NavSideNav />
+    <NavTopNav />
+    <NavSocialNav />
+    <NavSideNav />
     <section class="heroSection relative overflow-hidden bgBlur">
-      <img :src="grid" alt="Logo" class="grid" loading="eager"/>
+      <div class="grid" />
       <div class="back_white_blob_top"></div>
       <div class="back_white_blob_down"></div>
 
       <div
-        class="flex flex-col items-center justify-center max-sm:justify-start max-sm:pt-16 max-sm:mt-[6rem]  h-full"
+        class="flex flex-col items-center justify-center max-sm:justify-start max-sm:pt-16 max-sm:mt-[6rem] h-full"
       >
         <div
           class="name-main text-center relative select-none"
           @mousemove="scaleGrow"
           @mouseleave="scaleNormal"
         >
-          <span class="absolute md:-top-[5%] -top-[10%] md:-left-4 left-0"> Hii, I&#39;m </span>
-          <h1 class="text-[48px] md:text-8xl font-bold font-cinzel-bold text-white -translate-4">
+          <span class="absolute md:-top-[5%] -top-[10%] md:-left-4 left-0">
+            Hii, I&#39;m
+          </span>
+          <h1
+            class="text-[48px] md:text-8xl font-bold font-cinzel-bold text-white -translate-4"
+          >
             <span>S</span>oumyajit
           </h1>
 
-          <h1 class="text-[48px] md:text-8xl font-bold font-cinzel-bold text-white">Mondal</h1>
+          <h1
+            class="text-[48px] md:text-8xl font-bold font-cinzel-bold text-white"
+          >
+            Mondal
+          </h1>
         </div>
 
         <h3 class="text-end text-white/70">
-          Full-stack <span class="font-changa capitalize text-white">developer</span>, love to
-          explore, build <span class="font-changa text-white"> weird </span>things and solving
+          Full-stack
+          <span class="font-changa capitalize text-white">developer</span>, love
+          to explore, build
+          <span class="font-changa text-white"> weird </span>things and solve
           problems
         </h3>
       </div>
@@ -38,7 +48,6 @@
 </template>
 
 <script setup>
-import grid from "~/assets/images/background/grid.svg";
 const { setHover } = useHover();
 function scaleGrow() {
   setHover(true);
@@ -50,10 +59,20 @@ function scaleNormal() {
 </script>
 <style scoped>
 main {
-  background: url("/noisy-2.png") center center fixed,
+  background:
+    url("/noisy-2.png") center center fixed,
     linear-gradient(327.21deg, #141414 3.65%, rgba(26, 26, 26, 0) 40.32%),
-    linear-gradient(245.93deg, rgba(36, 35, 36, 0.27) 0%, rgba(235, 235, 235, 0) 36.63%),
-    linear-gradient(147.6deg, rgba(0, 0, 0, 0) 29.79%, rgba(0, 0, 0, 0.03) 85.72%), #141414;
+    linear-gradient(
+      245.93deg,
+      rgba(36, 35, 36, 0.27) 0%,
+      rgba(235, 235, 235, 0) 36.63%
+    ),
+    linear-gradient(
+      147.6deg,
+      rgba(0, 0, 0, 0) 29.79%,
+      rgba(0, 0, 0, 0.03) 85.72%
+    ),
+    #141414;
   width: 100vw;
   min-height: 100vh;
 }
@@ -64,30 +83,48 @@ main {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  mask-image: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgb(0, 0, 0) 3%,
-    rgb(0, 0, 0) 97%,
-    rgba(0, 0, 0, 0) 100%
-  );
   z-index: -10;
-  opacity: 0.24;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.16) 1.4px,
+    #141414 1.5px
+  );
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(
+    circle at 50% 47%,
+    #000 0%,
+    #000 30%,
+    transparent 72%
+  );
+  mask-image: radial-gradient(
+    circle at 50% 47%,
+    #000 0%,
+    #000 30%,
+    transparent 72%
+  );
 }
 
 .heroSection {
   padding-top: calc(var(--nav-height));
   width: 100vw;
   height: 100vh;
-  background: url("/noisy-2.png") center center fixed,
+  background:
+    url("/noisy-2.png") center center fixed,
     linear-gradient(327.21deg, #141414 3.65%, rgba(26, 26, 26, 0) 40.32%),
-    linear-gradient(245.93deg, rgba(36, 35, 36, 0.27) 0%, rgba(235, 235, 235, 0) 36.63%),
-    linear-gradient(147.6deg, rgba(0, 0, 0, 0) 29.79%, rgba(0, 0, 0, 0.03) 85.72%), #121212;
+    linear-gradient(
+      245.93deg,
+      rgba(36, 35, 36, 0.27) 0%,
+      rgba(235, 235, 235, 0) 36.63%
+    ),
+    linear-gradient(
+      147.6deg,
+      rgba(0, 0, 0, 0) 29.79%,
+      rgba(0, 0, 0, 0.03) 85.72%
+    ),
+    #121212;
 }
 
 .bgBlur {
-  backdrop-filter: blur(1rem);
+  backdrop-filter: blur(4px);
 }
 .back_white_blob_top {
   width: 34vw;
@@ -96,7 +133,7 @@ main {
   transform: translate(-50%, 50%);
   position: absolute;
   z-index: -3;
-  box-shadow: 0px 0 14rem 10rem rgba(149, 147, 147, 0.31);
+  box-shadow: 0px 0 14rem 10rem rgba(225, 225, 225, 0.1); /** rgba(149, 147, 147, 0.31)*/
   border-radius: 8% 52% 0% 100%/0% 0% 91% 100%;
 }
 .back_white_blob_down {
