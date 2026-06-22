@@ -12,19 +12,19 @@
 
 @font-face {
   font-family: "CinzelDecorative-regular";
-  src: url("/assets/fonts/Cinzel_Decorative/CinzelDecorative-Regular.ttf") format("truetype");
+  src: url("/fonts/Cinzel_Decorative/CinzelDecorative-Regular.ttf") format("truetype");
 }
 @font-face {
   font-family: "CinzelDecorative-bold";
-  src: url("/assets/fonts/Cinzel_Decorative/CinzelDecorative-Bold.ttf") format("truetype");
+  src: url("/fonts/Cinzel_Decorative/CinzelDecorative-Bold.ttf") format("truetype");
 }
 @font-face {
   font-family: "CinzelDecorative-black";
-  src: url("/public/fonts/Cinzel_Decorative/CinzelDecorative-Black.ttf") format("truetype");
+  src: url("/fonts/Cinzel_Decorative/CinzelDecorative-Black.ttf") format("truetype");
 }
 @font-face {
   font-family: "changa";
-  src: url("/assets/fonts/Changa/Changa-VariableFont_wght.ttf") format("truetype");
+  src: url("/fonts/Changa/Changa-VariableFont_wght.ttf") format("truetype");
 }
 
 html {
@@ -46,6 +46,18 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+
+::selection {
+    background-color: #ebebeb;
+    color: rgb(27, 27, 27);
+}
+::-moz-selection {
+      background-color: #ebebeb;
+    color: rgb(27, 27, 27);
+}
+
+
 .curtain {
   position: fixed;
   top: 0;
@@ -103,7 +115,7 @@ body {
   font-style: normal;
 }
 main {
-  background: url("/assets/images/background/noisy-2.png") center center fixed, #141414;
+  background: url("/noisy-2.png") center center fixed, #141414;
   min-height: 100vh;
 }
 .back_white_blob_top {
@@ -124,6 +136,67 @@ main {
   left: -6%;
   box-shadow: 0px 0 10rem 3rem rgba(177, 237, 247, 0.49);
 }
+
+.code-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 0.72em;
+  letter-spacing: 0.08em;
+  color: rgba(152, 109, 42, 0.68);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(130, 123, 123, 0.02);
+  padding: 0px 12px;
+}
+
+
+.flash{
+  padding: 4px 8px;
+  font-weight: 700;
+  position: relative;
+  overflow: hidden;
+
+  &::before{
+    content: "";
+    position: absolute;
+    top: -30%;
+    left: -50%;
+    width: 1%;
+    height: 160%;
+    transform: skewX(-20deg);
+    animation: shineAnimation 2.5s infinite linear;
+    pointer-events: none;
+    z-index: 1;
+    border-radius: inherit;
+    filter: blur(4px);
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        color-mix(in oklch, white 5%, transparent) 20%,
+        color-mix(in oklch, white 10%, transparent) 40%,
+        color-mix(in oklch, white 8%, transparent) 60%,
+        color-mix(in oklch, white 4%, transparent) 80%,
+        transparent 100%
+    );
+
+    box-shadow:
+        0 0 20px 4px color-mix(in oklch, white 2%, transparent),
+        0 0 40px 16px
+            color-mix(in oklch, rgb(225, 225, 225) 9%, transparent),
+        0 0 60px 28px color-mix(in oklch, white 2%, transparent);
+  }
+}
+
+@keyframes shineAnimation {
+    0% {
+        left: -50%;
+    }
+    100% {
+        left: 150%;
+    }
+}
+
 @media (width <= 640px) {
   main {
     min-height: 100svh;

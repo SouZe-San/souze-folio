@@ -27,26 +27,14 @@ const varSize = {
 };
 const updateMousePosition = (e: MouseEvent) => {
   mouse.value = { x: e.clientX, y: e.clientY };
-  size.value = computed(() =>
-    isHover.value ? varSize[scaleType.value] : 32,
-  ).value;
+  // size.value = computed(() =>
+  //   isHover.value ? varSize[scaleType.value] : 32,
+  // ).value;
+  size.value = isHover.value ? varSize[scaleType.value] : 32;
 };
 
 const moveCircle = (x: number, y: number, size: number) => {
   if (!cursor.value) return;
-  // $gsap.set(cursor.value, {
-  //   x,
-  //   y,
-  //   xPercent: -50,
-  //   yPercent: -50,
-  //   ease: "back.out",
-  // });
-
-  // $gsap.set(cursor.value,{
-  //   width:size,
-  //   duration:800,
-  //   ease:"power3.inOut"
-  // })
   $gsap.set(cursor.value, {
     x,
     y,
@@ -59,9 +47,14 @@ const animate = () => {
   const { x, y } = delayedMouse.value;
 
   //  using GSAP Utils Fun
+  // delayedMouse.value = {
+  //   x: computed(() => $gsap.utils.interpolate(x, mouse.value.x, 0.075)).value,
+  //   y: computed(() => $gsap.utils.interpolate(y, mouse.value.y, 0.075)).value,
+  // };
+
   delayedMouse.value = {
-    x: computed(() => $gsap.utils.interpolate(x, mouse.value.x, 0.075)).value,
-    y: computed(() => $gsap.utils.interpolate(y, mouse.value.y, 0.075)).value,
+    x: $gsap.utils.interpolate(x, mouse.value.x, 0.075),
+    y: $gsap.utils.interpolate(y, mouse.value.y, 0.075),
   };
 
   // Using own func
@@ -108,4 +101,6 @@ onMounted(() => {
   pointer-events: none;
     will-change: transform;
 }
+/* CSS */
+@media (hover: none) and (pointer: coarse) { .cursor { display: none; } }
 </style>

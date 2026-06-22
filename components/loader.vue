@@ -117,11 +117,9 @@ onMounted(() => {
     }
   );
 
-  // $gsap.set(".revealer svg", { scale: 0 });
   $gsap.set(".revealer", { scale: 0 }); 
   const delays = [6, 6.5, 7];
 
-  // $gsap.utils.toArray(".revealer svg").forEach((el, i) => {
   $gsap.utils.toArray(".revealer").forEach((el, i) => { 
     if (!el) return;
     $gsap.to(el, {
@@ -145,12 +143,6 @@ onMounted(() => {
     });
   });
 
-  // $gsap.from(".name-main h1", {
-  //   scale: 0,
-  //   duration: 1,
-  //   ease: "power3.inOut",
-  //   delay: 8,
-  // });
   $gsap.fromTo(".name-main span",
   { scale: 0 },
   { scale: 1, duration: 1, ease: "power3.inOut", delay: 8 }

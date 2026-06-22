@@ -1,7 +1,7 @@
 <template>
   <section>
     <Loader />
-    <NavSideMobileNav />
+    <NavMobileDialNav />
     <Cursor />
     <div ref="curtain" class="curtain"></div>
 
@@ -10,6 +10,7 @@
 </template>
 
 <script lang="ts" setup>
+
 const curtain = ref(null);
 const { $gsap, $CustomEase } = useNuxtApp();
 onMounted(() => {
