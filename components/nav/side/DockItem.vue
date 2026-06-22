@@ -50,7 +50,6 @@ interface Props {
 const props = defineProps<Props>()
 
 const iconContainer = ref<HTMLElement>()
-const iconWrapper = ref<HTMLElement>()
 const tooltip = ref<HTMLElement>()
 const hovered = ref(false)
 
