@@ -1,12 +1,12 @@
 import type { TechIconType } from "~/assets/images/logos";
 
-import gymBoyImg from "~/assets/images/projects/gymboy.webp";
-import omsImg from "~/assets/images/projects/oms.webp";
-import morphImg from "~/assets/images/projects/imagemorph.webp";
-import ryitImg from "~/assets/images/projects/ryit.webp";
-import marsImg from "~/assets/images/projects/mars.webp";
-import findImg from "~/assets/images/projects/findYou.webp";
-import webImg from "~/assets/images/projects/web.webp";
+// import gymBoyImg from "~/assets/images/projects/gymboy.webp";
+// import omsImg from "~/assets/images/projects/oms.webp";
+// import morphImg from "~/assets/images/projects/imagemorph.webp";
+// import ryitImg from "~/assets/images/projects/ryit.webp";
+// import marsImg from "~/assets/images/projects/mars.webp";
+// import findImg from "~/assets/images/projects/findYou.webp";
+// import webImg from "~/assets/images/projects/web.webp";
 
 export interface Project {
   title: {
@@ -25,6 +25,32 @@ export interface Project {
   projectType: "frontend" | "backend" | "fullStack";
 }
 
+export const techName = {
+  bun: "Bun",
+  cssAnimation: "Css Animation",
+  deno: "Deno",
+  docker: "Docker",
+  express: "express Js",
+  fresh: "Fresh Js",
+  gsap: "GSAP",
+  hono: "Hono Js",
+  postgres: "PostgresSql",
+  prisma: "Prisma ",
+  redux: "Redux",
+  scss: "scss",
+  supabase: "supabase",
+  stability: "Stability AI",
+  next: "Next Js",
+  reactJS: "ReactJs",
+  node: "Node",
+  mongoDB: "MongoDb",
+  sanity: "sanity",
+  threeJs: "Three.js",
+  tailwind: "Tailwind CSS",
+  ts: "TypeScript",
+  vue: "Vue Js",
+};
+
 export const AllProjects: Project[] = [
   {
     title: {
@@ -39,7 +65,7 @@ export const AllProjects: Project[] = [
     },
     techStack: ["vue", "bun", "hono", "supabase", "ts"],
     gitUrl: "https://github.com/SouZe-San/GymBoy",
-    imagUrl: gymBoyImg,
+    imagUrl: "/assets/projects/gymboy.webp",
     liveUrl: "https://gym-boy.vercel.app/",
     projectType: "fullStack",
   },
@@ -54,9 +80,18 @@ export const AllProjects: Project[] = [
       month: "June",
       year: "2025",
     },
-    techStack: ["next", "tailwind", "redux", "express", "ts", "prisma", "postgres", "docker"],
+    techStack: [
+      "next",
+      "tailwind",
+      "redux",
+      "express",
+      "ts",
+      "prisma",
+      "postgres",
+      "docker",
+    ],
     gitUrl: "https://github.com/SouZe-San/oms",
-    imagUrl: omsImg,
+    imagUrl: "/assets/projects/oms.webp",
     liveUrl: null,
     projectType: "fullStack",
   },
@@ -71,9 +106,17 @@ export const AllProjects: Project[] = [
       month: "Jan",
       year: "2025",
     },
-    techStack: ["reactJS", "scss", "tailwind", "express", "ts", "stability", "mongoDB"],
+    techStack: [
+      "reactJS",
+      "scss",
+      "tailwind",
+      "express",
+      "ts",
+      "stability",
+      "mongoDB",
+    ],
     gitUrl: "https://github.com/SouZe-San/ImageMorph",
-    imagUrl: morphImg,
+    imagUrl: "/assets/projects/imagemorph.webp",
     liveUrl: null,
     projectType: "fullStack",
   },
@@ -89,7 +132,7 @@ export const AllProjects: Project[] = [
     },
     techStack: ["next", "sanity", "ts", "cssAnimation"],
     gitUrl: "https://github.com/SouZe-San/computer-training-center-webpage",
-    imagUrl: ryitImg,
+    imagUrl: "/assets/projects/ryit.webp",
     liveUrl: "https://www.theryit.com/",
     projectType: "fullStack",
   },
@@ -98,14 +141,15 @@ export const AllProjects: Project[] = [
       first: "Mars",
       last: `  Travels`,
     },
-    description: " 🧑🏻‍🚀A cosmic tour of Mars in 3D! WebGL magic, 👽 alien-level animations.",
+    description:
+      " 🧑🏻‍🚀A cosmic tour of Mars in 3D! WebGL magic, 👽 alien-level animations.",
     date: {
       month: "May",
       year: "2024",
     },
     techStack: ["reactJS", "scss", "threeJs", "gsap"],
     gitUrl: "https://github.com/SouZe-San/project-Mars",
-    imagUrl: marsImg,
+    imagUrl: "/assets/projects/mars.webp",
     liveUrl: "https://project-mars-umber.vercel.app/",
     projectType: "frontend",
   },
@@ -122,7 +166,7 @@ export const AllProjects: Project[] = [
     },
     techStack: ["reactJS", "tailwind", "scss"],
     gitUrl: "https://github.com/SouZe-San/WebNews",
-    imagUrl: webImg,
+    imagUrl: "/assets/projects/web.webp",
     liveUrl: null,
     projectType: "frontend",
   },
@@ -138,7 +182,7 @@ export const AllProjects: Project[] = [
     },
     techStack: ["fresh", "tailwind", "deno", "ts"],
     gitUrl: "https://github.com/SouZe-San/FindYou",
-    imagUrl: findImg,
+    imagUrl: "/assets/projects/findYou.webp",
     liveUrl: "https://find-u.deno.dev/",
     projectType: "frontend",
   },

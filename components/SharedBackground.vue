@@ -7,7 +7,7 @@ const highlight = ref<HTMLElement | null>(null)
 
 let visible = false
 let current: HTMLElement | null = null
-const PAD_X = 0 // full-width rows: no horizontal overhang
+const PAD_X = 0 
 
 // if ease not feels good
 // const SPRING = makeSpring({ stiffness: 205, damping: 22, mass: 1 })
@@ -24,13 +24,13 @@ function boxIn(el: HTMLElement) {
 }
 
 function moveTo(el: HTMLElement) {
-  if (el === current) return // ignore repeated pointermove over the same row
+  if (el === current) return 
   current = el
   const box = boxIn(el)
 
   if (!visible) {
     visible = true
-    gsap.set(highlight.value, box)              // jump into place, no slide
+    gsap.set(highlight.value, box) 
     gsap.to(highlight.value, {
       opacity: 1,
       filter: 'blur(0px)',
@@ -40,7 +40,7 @@ function moveTo(el: HTMLElement) {
       startAt: { opacity: 0, filter: 'blur(6px)' },
     })
   } else {
-    gsap.to(highlight.value, {                   // the shared-layout slide, no blur
+    gsap.to(highlight.value, {
       ...box,
       duration: 0.5,
       ease: 'back.out(0.8)',
@@ -88,9 +88,9 @@ function onLeave() {
   height: 0;
   opacity: 0;
   pointer-events: none;
-  z-index: 5;                 /* ABOVE the opaque rows */
+  z-index: 5;
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.06); /* faint wash on #151515 — tune to taste */
+  background: rgba(255, 255, 255, 0.06);
   will-change: transform, width, height;
 }
 </style>
