@@ -169,6 +169,11 @@ h3 {
   .heroSection {
     height: 100svh;
   }
+  .grid{
+     -webkit-mask-image: radial-gradient( circle at 50% 34%, #000 0%, transparent 55% );
+mask-image: radial-gradient( circle at 50% 34%, #000 0%,  transparent 55% );
+  }
+  .back_white_blob_down {display: none;}
   .name-main {
     h1 {
       line-height: 1;
