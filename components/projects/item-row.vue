@@ -1,31 +1,45 @@
 <template>
-  <div
-    class="w-full mb-4 group row-item"
-    @mouseenter="(e) => manageMouseEnter(e)"
-    @mouseleave="(e) => manageMouseLeave(e)"
-  >
-    <div class="py-4 md:px-32 px-4 inside">
+  <div class="w-full group row-item">
+    <div class="py-4 px-4 sm:px-8 xl:px-72 inside">
       <div class="flex w-full gap-1 justify-between items-end">
         <div
-          class="flex items-center 2xl:text-[8rem] lg:text-[6.5rem] md:text-5xl text-[2rem] font-semibold item-head"
-          @mousemove="scaleUp"
-          @mouseleave="scaleNormal"
+          class="flex items-center 2xl:text-[4rem] lg:text-[3.5rem] md:text-5xl text-[2rem] font-semibold item-head"
         >
-          <h1 class="part-1"><span class="font-cinzel-bold">{{ title.first.charAt(0) }}</span>{{ title.first.slice(1) }}</h1>
+          <h1 class="part-1">
+            <span class="font-cinzel-bold">{{ title.first.charAt(0) }}</span
+            >{{ title.first.slice(1) }}
+          </h1>
           <div class="img">
-            <img :src="imagUrl" alt="bg-img" />
+            <NuxtImg :src="imagUrl" alt="bg-img" loading="lazy" width="640" />
           </div>
           <h1 class="part-2">
             <span class="font-cinzel-regular">{{ title.last }}</span>
           </h1>
         </div>
-        <div class="flex flex-col justify-between sm:h-[6rem] h-[5rem]" :class="(title.first.length + title.last.length) >8 && 'max-sm:-translate-x-1/2'">
-          <div class="project-type font-changa uppercase">{{ projectType }}</div>
-          <div class="flex gap-3 max-sm:justify-end" @mousemove="scaleMidUp" @mouseleave="scaleNormal">
-            <NuxtLink :to="gitUrl" target="_blank" class="flex items-center gap-1 link">
-            <IconsSocialsGithubLink class="sm:w-10 w-6" />
+        <div class="flex flex-col justify-between sm:h-[6rem] h-[5rem]">
+          <div class="project-type font-changa uppercase">
+            <span>{{ projectType }}</span>
+          </div>
+          <div
+            class="flex gap-3 justify-end"
+            @mouseenter="scaleMidUp"
+            @mouseleave="scaleNormal"
+          >
+            <NuxtLink
+              :to="gitUrl"
+              target="_blank"
+              aria-label="View source on GitHub"
+              class="flex items-center gap-1 link"
+            >
+              <IconsSocialsGithubLink class="sm:w-10 w-6" />
             </NuxtLink>
-            <NuxtLink v-if="liveUrl" :to="liveUrl" target="_blank" class="flex items-center gap-1 link">
+            <NuxtLink
+              v-if="liveUrl"
+              :to="liveUrl"
+              target="_blank"
+              aria-label="Open live site"
+              class="flex items-center gap-1 link"
+            >
               <IconsArrow
                 class="sm:w-7 w-4 ml-3 text-white opacity-60 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
             /></NuxtLink>
@@ -34,13 +48,15 @@
       </div>
 
       <div class="flex flex-col gap-2 mt-2">
-        <p class="md:text-lg text-sm description">
-         {{ description }}
+        <p class="md:text-base text-sm description">
+          {{ description }}
         </p>
-        <div class="flex justify-between items-center gap-8 md:gap-14">
+        <div
+          class="flex justify-between items-center gap-8 md:gap-14 max-md:opacity-75"
+        >
           <div
             class="flex gap-2 overflow-x-scroll no-scrollbar tech-stack-section"
-            @mousemove="scaleMidUp"
+            @mouseenter="scaleMidUp"
             @mouseleave="scaleNormal"
           >
             <span
@@ -51,14 +67,14 @@
               <img
                 :src="techIcons[tech]"
                 :alt="`${tech} logo used in title`"
-                class="sm:w-5 w-3 aspect-square object-contain"
+                class="sm:w-4.5 w-3 aspect-square object-contain"
                 loading="lazy"
               />
 
               {{ techName[tech] }}
             </span>
           </div>
-          <div class="sm:text-xl text-[16px]">
+          <div class="sm:text-xl text-[16px] hidden sm:block">
             <span class="font-cinzel-bold"> {{ date.month }},</span
             ><span class="font-cinzel-regular"> {{ date.year }}</span>
           </div>
@@ -70,19 +86,10 @@
 
 <script lang="ts" setup>
 import { techIcons } from "~/assets/images/logos";
-import type { Project } from "./projectsData";
+import { techName, type Project } from "../../config/projectsData";
 
 const { setHover } = useHover();
-const { $gsap } = useNuxtApp();
-let matchMedia:gsap.MatchMedia;
-onMounted(()=>{
-  matchMedia = $gsap.matchMedia()
-})
-function scaleUp() {
-  if(window.innerWidth >640){
-setHover(true, "big");
-  }
-}
+
 function scaleMidUp() {
   setHover(true, "small");
 }
@@ -91,80 +98,30 @@ function scaleNormal() {
   setHover(false);
 }
 
-
-defineProps<Project>()
-const techName = {
-  bun :"Bun",
-  cssAnimation: "Css Animation",
-  deno:"Deno",
-  docker : "Docker",
-  express :"express Js",
-  fresh :"Fresh Js",
-  gsap :"GSAP",
-  hono :"Hono Js",
-  postgres : "PostgresSql",
-  prisma:"Prisma ",
-  redux :"Redux",
-  scss :"scss",
-  supabase :"supabase",
-  stability:"Stability AI",
-  next : "Next Js",
-  reactJS : "ReactJs",
-  node : "Node",
-  mongoDB : "MongoDb",
-  sanity :"sanity",
-  threeJs :"Three.js",
-  tailwind : "Tailwind CSS",
-  ts :"TypeScript",
-  vue :"Vue Js",
-};
-
-const manageMouseEnter = (e: MouseEvent) => {
-  matchMedia.add("(min-width: 641px)" ,()=>{
-
-    $gsap.to(e.target, {
-      top: "-6rem",
-      background:
-        "linear-gradient(45deg,rgba(54, 54, 54, 1) 0%, rgba(31, 30, 30, 1) 34%, rgba(31, 28, 28, 0.97) 63%, rgba(59, 55, 55, 1) 94%)",
-      duration: 0.4,
-      ease: "power2.inOut",
-    });
-  }
-  )
-
-};
-
-const manageMouseLeave = (e: MouseEvent) => {
-  matchMedia.add("(min-width: 641px)" ,()=>{
-    $gsap.to(e.target, { top: "0", background: "#151515", duration: 0.3, delay: 0.1 });
-  })
-
-};
+defineProps<Project>();
 </script>
 
 <style scoped>
 .row-item {
   position: relative;
-  margin-bottom: -6rem;
-  background: #151515;
 
-  border-top: 1px solid rgba(200, 199, 199, 0.52);
+  background: #151515;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 220px;
 }
 .inside {
-  background: url("/assets/images/background/noisy-2.png");
+  background: url("/noisy-2.png");
 }
 .description {
   line-height: 1;
   letter-spacing: 1px;
   word-spacing: 2px;
-
+  color: rgba(214, 214, 214, 0.614);
 }
 
 .blur-bg {
-  background: url("/public/noiseTex.webp"), #eeeeee13;
+  background: url("/noiseTex.webp"), #eeeeee13;
   background-size: 180px;
- 
-  backdrop-filter: blur(1rem);
 }
 
 .badge {
@@ -172,11 +129,17 @@ const manageMouseLeave = (e: MouseEvent) => {
   align-items: center;
   gap: 5px;
   padding: 4px 20px;
-  border: 2px solid #d1d1d157;
-  border-radius: 25px;
+
+  border: 2px solid #d1d1d138;
+  border-radius: 8px;
   letter-spacing: 2px;
   flex-shrink: 0;
   color: #f4f4f4d4;
+  font-size: 12px;
+
+  img {
+    filter: brightness(0.8);
+  }
 }
 .project-type {
   font-size: 14px;
@@ -184,35 +147,43 @@ const manageMouseLeave = (e: MouseEvent) => {
   letter-spacing: 4px;
   border: 2px solid #dfdfdf4f;
   padding: 0px 6px;
+  background: repeating-linear-gradient(
+    119deg,
+    color-mix(in srgb, #ededec 24%, transparent) 0px,
+    color-mix(in srgb, #ededec 24%, transparent) 1px,
+    transparent 1px,
+    transparent 5px
+  );
 }
 
-.tech-stack-section{
-   -ms-overflow-style: none; 
-    scrollbar-width: none; 
-    -webkit-overflow-scrolling: touch; 
-  
-
+.tech-stack-section {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .item-head {
-  --webkit-box-direction: 100%;
   .img {
-    width: 15rem;
-    background: #000;
-    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-    overflow: hidden;
-    flex: 0;
+    width: 0;
+    transition: width 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
+    overflow: visible;
 
+    position: relative;
+    align-self: stretch;
     img {
+      position: absolute;
+      top: 50%;
+      left: 0;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: 1.7em;
+      transform: translateY(-50%);
+      object-fit: contain;
     }
   }
 
   &:hover {
     .img {
-      flex: 1;
+      width: 3.5em;
     }
   }
 }
@@ -237,28 +208,25 @@ a.link {
   }
 }
 
-
 @media (width <= 640px) {
-  .row-item{
-     margin-bottom: 0;
-  }
   .item-head {
-
-  .img {
-    width: 8rem;
-  }}
+    .img {
+      display: none;
+    }
+  }
   .project-type {
-  font-size: 12px;}
+    font-size: 12px;
+  }
 
-  .badge{
+  .badge {
     font-size: 12px;
     letter-spacing: 0.4px;
     padding: 3px 15px;
     gap: 4px;
   }
   .description {
-  line-height: 1.4;
-  word-spacing: 0;
-}
+    line-height: 1.4;
+    word-spacing: 0;
+  }
 }
 </style>
